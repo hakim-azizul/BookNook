@@ -33,9 +33,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Bookory holo apnar poribar ebong priojonder jonno ekti vison
-              shundor ebong bhorshar shathe boi kinar modern online bookstore
-              platform.
+              Your digital space to borrow, share, and discover amazing books. Connect with fellow book lovers. Read continuously, share insights, and grow community. all in one place.
             </p>
 
             {/* Social Links */}
