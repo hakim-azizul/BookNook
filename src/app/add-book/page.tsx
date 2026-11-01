@@ -49,7 +49,6 @@ const AddBookPage = () => {
             <Description className="text-gray-400 mb-4">
               Make a contribution to grow our digital library today!
             </Description>
-
             <Fieldset.Group className="space-y-4">
               {/* Title & Author */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -67,7 +66,6 @@ const AddBookPage = () => {
                   <Input placeholder="The Republic" />
                   <FieldError />
                 </TextField>
-
                 <TextField
                   isRequired
                   name="author"
@@ -83,7 +81,6 @@ const AddBookPage = () => {
                   <FieldError />
                 </TextField>
               </div>
-
               {/* Category & Quantity */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Select
@@ -134,7 +131,6 @@ const AddBookPage = () => {
                   </Select.Popover>
                   <FieldError />
                 </Select>
-
                 <NumberField
                   isRequired
                   minValue={1}
@@ -149,7 +145,6 @@ const AddBookPage = () => {
                   </NumberField.Group>
                 </NumberField>
               </div>
-
               <TextField
                 isRequired
                 name="image"
@@ -167,7 +162,6 @@ const AddBookPage = () => {
                 <Input placeholder="https://example.com/image.jpg" />
                 <FieldError />
               </TextField>
-
               <TextField
                 isRequired
                 name="description"
