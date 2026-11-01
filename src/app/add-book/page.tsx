@@ -16,13 +16,14 @@ import {
 } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
 
+const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 const AddBookPage = () => {
   const { data: session, isPending } = useSession();
   if (isPending) return <p>Loading user data...</p>;
   if (!session) return <p>Please log in to add a book.</p>;
   const user = session.user;
 
-  const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
