@@ -81,8 +81,8 @@ const HeroSlider = () => {
                   <div className="p-3 bg-white rounded-2xl shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 border border-gray-100">
                     <Image 
                       src={slide.image}
-                      width={30}
-                      height={30}
+                      width={300}
+                      height={400}
                       alt={slide.title} 
                       className="w-60 md:w-72 h-72 md:h-80 object-cover rounded-xl"
                     />
