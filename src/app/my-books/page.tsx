@@ -61,14 +61,8 @@ const MyBooksPage = () => {
     e.preventDefault();
     if (!selectedBook) return;
 
-    const form = e.currentTarget;
-    const updatedData = {
-      title: (form.elements.namedItem("title") as HTMLInputElement).value,
-      author: (form.elements.namedItem("author") as HTMLInputElement).value,
-      category: (form.elements.namedItem("category") as HTMLInputElement).value,
-      quantity: (form.elements.namedItem("quantity") as HTMLInputElement).value,
-      image: (form.elements.namedItem("image") as HTMLInputElement).value,
-    };
+    const formData = new FormData(e.currentTarget);
+    const updatedData = Object.fromEntries(formData.entries());
 
     try {
       const res = await fetch(`${API_URL}/books/${selectedBook._id}`, {
