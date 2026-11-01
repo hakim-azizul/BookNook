@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import iBook from "@/types/bookType";
+import Link from "next/link";
 
 interface BookCardProps {
   book: iBook;
@@ -40,9 +41,11 @@ const BookCard = ({ book }: BookCardProps) => {
 
         {/* Bottom View Details Link */}
         <div className="flex items-center justify-end mt-4 pt-3 border-t border-neutral-800/80">
-          <span className="text-xs font-semibold text-[#ff0018] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-            View Details &rarr;
-          </span>
+          <Link href={`/books/${book._id}`}>
+            <span className="text-xs font-semibold text-[#ff0018] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              View Details &rarr;
+            </span>
+          </Link>
         </div>
       </div>
     </div>

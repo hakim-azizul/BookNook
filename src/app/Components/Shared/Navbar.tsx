@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useSession, signOut } from "@/lib/auth-client";
+import { FaUser, FaRightFromBracket } from "react-icons/fa6";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,9 +108,12 @@ const Navbar = () => {
                     <Link
                       href="/profile"
                       onClick={() => setIsProfileOpen(false)}
-                      className="block px-3 py-2 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors"
+                      className="px-3 py-2 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors flex flex-row items-center gap-2"
                     >
-                      👤 Profile Page
+
+                      <FaUser className="w-4 h-4" />
+
+                      <span>My Profile</span>
                     </Link>
 
                     <button
@@ -118,9 +123,10 @@ const Navbar = () => {
                           callbackURL: "/",
                         });
                       }}
-                      className="w-full text-left px-3 py-2 text-xs font-semibold text-[#ff0018] hover:bg-[#ff0018]/10 rounded-xl transition-colors"
+                      className="w-full text-left px-3 py-2 text-xs font-bold text-[#ff0018] hover:bg-[#ff0018]/10 rounded-xl transition-colors flex flex-row items-center gap-2"
                     >
-                      🚪 Logout
+                      <FaRightFromBracket className="w-4 h-4 text-[#ff0018]" />
+                      <span className="">Log Out</span>
                     </button>
                   </div>
                 )}
@@ -230,7 +236,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className="block py-2.5 px-3 text-base font-medium text-neutral-300 hover:text-[#ff5b49] hover:bg-neutral-900 rounded-xl"
               >
-                👤 Profile Page
+                My Profile
               </Link>
             )}
           </div>
@@ -245,9 +251,10 @@ const Navbar = () => {
                     callbackURL: "/",
                   });
                 }}
-                className="w-full text-left py-2.5 px-3 text-base font-semibold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 rounded-xl transition-colors"
+                className="w-full text-left py-2.5 px-3 text-base font-semibold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 rounded-xl transition-colors flex flex-row items-center gap-2"
               >
-                🚪 Logout
+                <FiLogOut className="w-4 h-4 text-[#ff0018]" />
+                <span>Logout</span>
               </button>
             ) : (
               <div className="flex flex-col gap-2">
