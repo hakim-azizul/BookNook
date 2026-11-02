@@ -1,13 +1,36 @@
 import iBook from "@/types/bookType";
-import React from "react";
 import BookCard from "../Shared/BookCard";
 import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
+const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 const NewArraivals = async () => {
-  const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-  const res = await fetch(`${api}/new-arrivals`);
-  const data = await res.json();
-  const books = data;
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = jwtToken?.token;
+
+  let newBooks = [];
+  try {
+    const res = await fetch(`${api}/new-arrivals`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.ok) {
+      newBooks = await res.json();
+    }
+  } catch (error) {
+    console.error("Error fetching books:", error);
+  }
+  if (!newBooks || newBooks.length === 0) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center text-neutral-500">
+        No books found or failed to load.
+      </div>
+    );
+  }
   return (
     <section className="py-16 px-4 sm:px-8 bg-linear-to-b from-neutral-50 via-white to-neutral-100 text-[#121212]">
       <div className="max-w-7xl mx-auto space-y-12">
@@ -49,9 +72,9 @@ const NewArraivals = async () => {
         </div>
 
         {/* Books Grid with Responsive Screen Size Filtering */}
-        {Array.isArray(books) && books.length > 0 ? (
+        {Array.isArray(newBooks) && newBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-            {books.map((book: iBook, index: number) => {
+            {newBooks.map((newBook: iBook, index: number) => {
               let visibilityClass = "";
               if (index >= 6 && index < 9) {
                 visibilityClass = "hidden sm:block";
@@ -61,10 +84,10 @@ const NewArraivals = async () => {
 
               return (
                 <div
-                  key={book._id || index}
+                  key={newBook._id || index}
                   className={`w-full flex justify-center ${visibilityClass}`}
                 >
-                  <BookCard book={book} />
+                  <BookCard book={newBook} />
                 </div>
               );
             })}

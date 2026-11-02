@@ -1,13 +1,37 @@
 import iBook from "@/types/bookType";
 import React from "react";
 import BookCard from "../Components/Shared/BookCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const AllBooksPage = async () => {
-  const res = await fetch(`${api}/allBooks`);
-  const data = await res.json();
-  const books = data;
+  const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const token = jwtToken?.token;
+
+  let books = [];
+  try {
+    const res = await fetch(`${api}/allBooks`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.ok) {
+      books = await res.json();
+    }
+  } catch (error) {
+    console.error("Error fetching books:", error);
+  }
+  if (!books || books.length === 0) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center text-neutral-500">
+        No books found or failed to load.
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen text-[#121212] px-4 sm:px-8 py-12">
       <div className="max-w-7xl mx-auto space-y-10">
