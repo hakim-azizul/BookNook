@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useSession } from "@/lib/auth-client"; // আপনার প্রজেক্টের পাথ অনুযায়ী ঠিক রাখুন
+import { useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -8,7 +8,7 @@ import {
   HiOutlineBookOpen,
   HiOutlineBookmark,
   HiOutlinePencilSquare,
-    HiOutlineSparkles,
+  HiOutlineSparkles,
 } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 
@@ -18,8 +18,49 @@ const ProfilePage = () => {
 
   if (isPending) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex justify-center items-center">
-        <div className="w-12 h-12 rounded-full border-4 border-[#ff5b49] border-t-transparent animate-spin" />
+      <div className="min-h-screen bg-neutral-50 py-10 px-4 flex justify-center items-start">
+        <div className="max-w-4xl w-full space-y-6">
+          <div className="bg-white rounded-3xl border border-neutral-200 overflow-hidden shadow-sm animate-pulse">
+            <div className="h-40 bg-neutral-200 relative">
+              <div className="absolute top-4 right-4 h-7 w-36 bg-neutral-300 rounded-full" />
+            </div>
+            <div className="px-8 pb-8 pt-0 relative">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 -mt-16 mb-6">
+                <div className="w-32 h-32 rounded-full border-4 border-white bg-neutral-300 shadow-md" />
+                <div className="h-10 w-28 bg-neutral-200 rounded-xl" />
+              </div>
+              <div className="space-y-3">
+                <div className="h-8 w-48 bg-neutral-300 rounded-lg" />
+                <div className="flex flex-wrap items-center gap-4 pt-1">
+                  <div className="h-4 w-44 bg-neutral-200 rounded-md" />
+                  <div className="h-4 w-32 bg-neutral-200 rounded-md" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white p-6 rounded-3xl border border-neutral-200 flex items-center justify-between animate-pulse">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-neutral-200 rounded-2xl" />
+                <div className="space-y-2">
+                  <div className="h-5 w-40 bg-neutral-300 rounded-md" />
+                  <div className="h-3 w-32 bg-neutral-200 rounded-md" />
+                </div>
+              </div>
+              <div className="h-4 w-4 bg-neutral-200 rounded-full" />
+            </div>
+            <div className="bg-white p-6 rounded-3xl border border-neutral-200 flex items-center justify-between animate-pulse">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-neutral-200 rounded-2xl" />
+                <div className="space-y-2">
+                  <div className="h-5 w-40 bg-neutral-300 rounded-md" />
+                  <div className="h-3 w-32 bg-neutral-200 rounded-md" />
+                </div>
+              </div>
+              <div className="h-4 w-4 bg-neutral-200 rounded-full" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

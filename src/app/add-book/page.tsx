@@ -15,14 +15,89 @@ import {
   Select,
 } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
+import Link from "next/link";
 
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const AddBookPage = () => {
   const { data: session, isPending } = useSession();
-  if (isPending) return <p>Loading user data...</p>;
-  if (!session) return <p>Please log in to add a book.</p>;
-  const user = session.user;
+  const user = session?.user;
+  if (isPending) {
+    return (
+      <div className="min-h-screen bg-neutral-50 py-12 px-4 flex justify-center items-center">
+        <div className="max-w-xl w-full bg-white p-8 rounded-3xl border border-neutral-200 shadow-sm animate-pulse space-y-6">
+          <div className="space-y-2">
+            <div className="h-7 w-48 bg-neutral-300 rounded-lg" />
+            <div className="h-4 w-72 bg-neutral-200 rounded-md" />
+          </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="h-4 w-20 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="h-4 w-20 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="h-4 w-32 bg-neutral-200 rounded-md" />
+              <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+            </div>
+            <div className="space-y-2">
+              <div className="h-4 w-28 bg-neutral-200 rounded-md" />
+              <div className="h-24 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="h-4 w-24 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+              <div className="space-y-2">
+                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 pt-2">
+            <div className="h-10 w-24 bg-neutral-200 rounded-xl" />
+            <div className="h-10 w-28 bg-neutral-300 rounded-xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if (!user) {
+    return (
+      <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
+        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full">
+          <h2 className="text-2xl font-bold text-neutral-800 mb-2">
+            Please sign in
+          </h2>
+          <p className="text-neutral-500 text-sm mb-6">
+            To make a contribution.
+          </p>
+          <Link
+            href="/signin"
+            className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm"
+          >
+            Sign In
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
