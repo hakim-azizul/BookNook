@@ -44,10 +44,10 @@ const BorrowCard = ({
 
   return (
     <>
-      <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-sm p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:shadow-md transition-all group">
+      <div className="bg-white dark:bg-[#18181b] rounded-3xl border border-neutral-200/80 dark:border-neutral-800 shadow-sm p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:shadow-md transition-all group">
         {/* Left: Image & Info */}
         <div className="flex items-center gap-4 w-full sm:w-auto min-w-0">
-          <div className="relative w-20 h-24 sm:w-24 sm:h-32 rounded-2xl overflow-hidden bg-neutral-100 shrink-0 border border-neutral-200/60">
+          <div className="relative w-20 h-24 sm:w-24 sm:h-32 rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 shrink-0 border border-neutral-200/60 dark:border-neutral-800">
             <Image
               src={image || fallbackImage}
               alt={title || "Borrowed Book"}
@@ -61,18 +61,18 @@ const BorrowCard = ({
             <span className="inline-block px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20">
               Currently Reading
             </span>
-            <h3 className="font-extrabold text-neutral-900 text-base sm:text-lg truncate">
+            <h3 className="font-extrabold text-neutral-900 dark:text-white text-base sm:text-lg truncate">
               {title}
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-500 truncate">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 truncate">
               Penned by <span className="text-[#ff5b49] font-medium">{author}</span>
             </p>
 
             {/* Borrow Date */}
             {borrowDate && (
-              <p className="text-[11px] sm:text-xs text-neutral-400 font-medium pt-0.5">
+              <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 font-medium pt-0.5">
                 Entrusted on:{" "}
-                <span className="text-neutral-700">
+                <span className="text-neutral-700 dark:text-neutral-300">
                   {new Date(borrowDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
@@ -85,11 +85,11 @@ const BorrowCard = ({
         </div>
 
         {/* Right: Return Button */}
-        <div className="w-full sm:w-auto flex justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100">
+        <div className="w-full sm:w-auto flex justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
           <button
             onClick={() => setIsOpen(true)}
             aria-label={`Return ${title}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-2xl text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-2xl text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/40 border border-red-200 dark:border-red-900/50 transition-colors cursor-pointer"
           >
             <HiOutlineArrowUturnLeft className="w-4 h-4" />
             <span>Return Volume</span>
@@ -101,21 +101,21 @@ const BorrowCard = ({
       <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
         <Modal.Backdrop variant="blur">
           <Modal.Container>
-            <Modal.Dialog className="sm:max-w-md p-2">
+            <Modal.Dialog className="sm:max-w-md p-2 bg-white dark:bg-[#18181b] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800">
               <Modal.CloseTrigger />
 
               <Modal.Header className="flex flex-col items-center text-center space-y-2 pt-4">
-                <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center border border-red-100">
+                <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center border border-red-100 dark:border-red-900/50">
                   <HiOutlineExclamationTriangle className="w-6 h-6" />
                 </div>
-                <Modal.Heading className="text-xl font-bold text-neutral-900">
+                <Modal.Heading className="text-xl font-bold text-neutral-900 dark:text-white">
                   Conclude This Reading Chapter?
                 </Modal.Heading>
               </Modal.Header>
 
-              <Modal.Body className="text-center text-sm text-neutral-500 px-4 py-2 leading-relaxed">
+              <Modal.Body className="text-center text-sm text-neutral-500 dark:text-neutral-400 px-4 py-2 leading-relaxed">
                 Have you turned the final page? Returning{" "}
-                <span className="font-semibold text-neutral-800">
+                <span className="font-semibold text-neutral-800 dark:text-neutral-200">
                   &ldquo;{title}&rdquo;
                 </span>{" "}
                 allows the next awaiting bibliophile to discover its wonder.

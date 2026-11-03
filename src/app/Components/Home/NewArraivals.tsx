@@ -27,10 +27,10 @@ const NewArraivals = async () => {
   }
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-8 bg-linear-to-b from-neutral-50 via-white to-neutral-100 text-[#121212]">
+    <section className="py-12 sm:py-16 px-4 sm:px-8 bg-linear-to-b from-neutral-50 via-white to-neutral-100 dark:from-[#0f0f10] dark:via-[#141416] dark:to-[#0f0f10] text-[#121212] dark:text-neutral-100 transition-colors duration-200">
       <div className="max-w-7xl mx-auto space-y-10 sm:space-y-12">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-200/80 pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-200/80 dark:border-neutral-800 pb-6">
           <div className="space-y-3 text-center md:text-left">
             {/* Top Badge */}
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20 shadow-xs">
@@ -38,7 +38,7 @@ const NewArraivals = async () => {
             </span>
 
             {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">
               Recently Welcomed to Our{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#ff5b49] to-[#ff0018]">
                 Shelves
@@ -46,7 +46,7 @@ const NewArraivals = async () => {
             </h2>
 
             {/* Subtitle */}
-            <p className="text-neutral-600 max-w-xl text-sm sm:text-base leading-relaxed">
+            <p className="text-neutral-600 dark:text-neutral-400 max-w-xl text-sm sm:text-base leading-relaxed">
               Newly cataloged volumes and treasured manuscripts generously gifted by
               fellow bibliophiles, ready to begin their next chapter with you.
             </p>
@@ -88,8 +88,8 @@ const NewArraivals = async () => {
             })}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-3xl border border-neutral-200 shadow-sm">
-            <p className="text-neutral-500 text-base sm:text-lg">
+          <div className="text-center py-16 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm">
+            <p className="text-neutral-500 dark:text-neutral-400 text-base sm:text-lg">
               The archives are quietly settling. No recent arrivals this hour—explore our timeless collection above!
             </p>
           </div>

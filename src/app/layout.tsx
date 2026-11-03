@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
 import Footer from "./Components/Shared/Footer";
 import { ToastProvider } from "@heroui/react";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,14 +49,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {/* Global Toast Provider */}
-        <ToastProvider placement="top end" />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('booknook-theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-white dark:bg-[#0f0f10] text-[#121212] dark:text-neutral-100 transition-colors duration-200">
+        <ThemeProvider>
+          {/* Global Toast Provider */}
+          <ToastProvider placement="top end" />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

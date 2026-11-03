@@ -126,14 +126,14 @@ const SignInPage = () => {
   const targetPath = getRedirectPath();
 
   return (
-    <div className="flex items-center justify-center rounded-3xl bg-surface p-4 sm:p-6 min-h-[80vh]">
-      <Surface className="w-full max-w-xl p-6 sm:p-12 rounded-3xl bg-[#f4f6f0] shadow-xl">
+    <div className="flex items-center justify-center rounded-3xl bg-surface p-4 sm:p-6 min-h-[80vh] transition-colors duration-200">
+      <Surface className="w-full max-w-xl p-6 sm:p-12 rounded-3xl bg-[#f4f6f0] dark:bg-[#18181b] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-rose-500 text-2xl font-bold">
               Welcome Back, Fellow Reader
             </Fieldset.Legend>
-            <Description className="text-[#1a1a1a] mb-4">
+            <Description className="text-neutral-600 dark:text-neutral-400 mb-4">
               Re-enter the quiet haven of BookNook. Stories and companions await your return.
             </Description>
             <Fieldset.Group className="space-y-4">

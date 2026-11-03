@@ -104,7 +104,7 @@ const BorrowBtn = ({
       <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
         <Modal.Backdrop variant="blur">
           <Modal.Container>
-            <Modal.Dialog className="sm:max-w-md p-2">
+            <Modal.Dialog className="sm:max-w-md p-2 bg-white dark:bg-[#18181b] text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800">
               <Modal.CloseTrigger />
 
               <Modal.Header className="flex flex-col items-center text-center space-y-2 pt-4">
@@ -118,41 +118,41 @@ const BorrowBtn = ({
                 >
                   <HiOutlineExclamationTriangle className="w-6 h-6" />
                 </div>
-                <Modal.Heading className="text-xl font-bold text-neutral-900">
+                <Modal.Heading className="text-xl font-bold text-neutral-900 dark:text-white">
                   Reserve This Volume
                 </Modal.Heading>
               </Modal.Header>
 
               <Modal.Body className="space-y-3 px-4 py-3 text-sm">
-                <p className="text-neutral-500 text-center text-xs">
+                <p className="text-neutral-500 dark:text-neutral-400 text-center text-xs">
                   Review your reading pact before the volume is entrusted to your care:
                 </p>
 
                 {/* Read-only Information Fields */}
-                <div className="space-y-2 bg-neutral-50 p-3.5 rounded-2xl border border-neutral-200/70">
+                <div className="space-y-2 bg-neutral-50 dark:bg-neutral-900/80 p-3.5 rounded-2xl border border-neutral-200/70 dark:border-neutral-800">
                   <div>
-                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                       Title of the Work
                     </label>
-                    <p className="font-bold text-neutral-900 text-sm line-clamp-1">
+                    <p className="font-bold text-neutral-900 dark:text-white text-sm line-clamp-1">
                       {title}
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                       Borrowing Reader
                     </label>
-                    <p className="font-semibold text-neutral-800 text-sm">
+                    <p className="font-semibold text-neutral-800 dark:text-neutral-200 text-sm">
                       {session?.user?.name || "Bibliophile"}
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+                    <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                       Reader Correspondence
                     </label>
-                    <p className="font-medium text-neutral-700 text-xs">
+                    <p className="font-medium text-neutral-700 dark:text-neutral-300 text-xs">
                       {session?.user?.email || "N/A"}
                     </p>
                   </div>

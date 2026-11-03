@@ -25,9 +25,9 @@ const AllBooksPage = async () => {
 
   if (!books || books.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center text-neutral-500 space-y-2 px-4 text-center">
-        <p className="text-xl font-bold text-neutral-800">The Shelves are Momentarily Still</p>
-        <p className="text-sm text-neutral-500 max-w-md">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center text-neutral-500 dark:text-neutral-400 space-y-2 px-4 text-center">
+        <p className="text-xl font-bold text-neutral-800 dark:text-neutral-200">The Shelves are Momentarily Still</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-md">
           No volumes are currently on display in the catalog. Check back shortly or bestow your own books upon the collection.
         </p>
       </div>
@@ -35,20 +35,20 @@ const AllBooksPage = async () => {
   }
 
   return (
-    <div className="min-h-screen text-[#121212] px-4 sm:px-8 py-10 sm:py-12">
+    <div className="min-h-screen text-[#121212] dark:text-neutral-100 px-4 sm:px-8 py-10 sm:py-12 transition-colors duration-200">
       <div className="max-w-7xl mx-auto space-y-10">
         <div className="flex flex-col items-center text-center space-y-3">
           <span className="px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20">
             Communal Sanctuary
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">
             The Grand{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#ff5b49] to-[#ff0018]">
               Library Catalog
             </span>
           </h1>
 
-          <p className="text-neutral-500 max-w-xl text-sm sm:text-base leading-relaxed">
+          <p className="text-neutral-500 dark:text-neutral-400 max-w-xl text-sm sm:text-base leading-relaxed">
             Step through aisles of philosophy, vibrant poetry, gripping narratives, and
             transformative ideas. Every spine holds an invitation to explore.
           </p>
@@ -62,8 +62,8 @@ const AllBooksPage = async () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 bg-white rounded-3xl border border-neutral-200 shadow-sm">
-            <p className="text-neutral-500 text-lg">
+          <div className="text-center py-16 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm">
+            <p className="text-neutral-500 dark:text-neutral-400 text-lg">
               No volumes cataloged in the archives yet.
             </p>
           </div>

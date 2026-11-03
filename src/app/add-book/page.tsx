@@ -31,55 +31,27 @@ const AddBookPage = () => {
 
   if (isPending) {
     return (
-      <div className="min-h-screen bg-neutral-50 py-12 px-4 flex justify-center items-center">
-        <div className="max-w-xl w-full bg-white p-8 rounded-3xl border border-neutral-200 shadow-sm animate-pulse space-y-6">
+      <div className="min-h-screen bg-neutral-50 dark:bg-[#0f0f10] py-12 px-4 flex justify-center items-center">
+        <div className="max-w-xl w-full bg-white dark:bg-[#18181b] p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm animate-pulse space-y-6">
           <div className="space-y-2">
-            <div className="h-7 w-48 bg-neutral-300 rounded-lg" />
-            <div className="h-4 w-72 bg-neutral-200 rounded-md" />
+            <div className="h-7 w-48 bg-neutral-300 dark:bg-neutral-700 rounded-lg" />
+            <div className="h-4 w-72 bg-neutral-200 dark:bg-neutral-800 rounded-md" />
           </div>
           <div className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <div className="h-4 w-20 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+                <div className="h-4 w-20 bg-neutral-200 dark:bg-neutral-700 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700" />
               </div>
               <div className="space-y-2">
-                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <div className="h-4 w-20 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-              </div>
-              <div className="space-y-2">
-                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-32 bg-neutral-200 rounded-md" />
-              <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 w-28 bg-neutral-200 rounded-md" />
-              <div className="h-24 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <div className="h-4 w-24 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
-              </div>
-              <div className="space-y-2">
-                <div className="h-4 w-16 bg-neutral-200 rounded-md" />
-                <div className="h-11 w-full bg-neutral-100 rounded-xl border border-neutral-200" />
+                <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-700 rounded-md" />
+                <div className="h-11 w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700" />
               </div>
             </div>
           </div>
           <div className="flex items-center justify-end gap-3 pt-2">
-            <div className="h-10 w-24 bg-neutral-200 rounded-xl" />
-            <div className="h-10 w-28 bg-neutral-300 rounded-xl" />
+            <div className="h-10 w-24 bg-neutral-200 dark:bg-neutral-700 rounded-xl" />
+            <div className="h-10 w-28 bg-neutral-300 dark:bg-neutral-600 rounded-xl" />
           </div>
         </div>
       </div>
@@ -88,12 +60,12 @@ const AddBookPage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
-        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
-          <h2 className="text-2xl font-bold text-neutral-800">
+      <div className="min-h-[70vh] bg-neutral-50 dark:bg-[#0f0f10] flex flex-col justify-center items-center px-4">
+        <div className="bg-white dark:bg-[#18181b] p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-xl text-center max-w-md w-full space-y-4">
+          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">
             A Curator&apos;s Hearth Awaits
           </h2>
-          <p className="text-neutral-500 text-sm">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm">
             Please sign in to bestow and catalog a volume within the BookNook sanctuary.
           </p>
           <Link
@@ -149,8 +121,8 @@ const AddBookPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 bg-surface">
-      <Surface className="w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#f4f6f0] shadow-xl">
+    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 bg-surface transition-colors duration-200">
+      <Surface className="w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#f4f6f0] dark:bg-[#18181b] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
         <Form className="w-full" onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-[#ff5b49] text-2xl font-bold">

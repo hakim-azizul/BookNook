@@ -5,14 +5,14 @@ import { HiOutlineBookOpen, HiPlus } from "react-icons/hi2";
 
 export default function MyBooksEmptyState() {
   return (
-    <div className="bg-white p-8 sm:p-12 rounded-3xl border border-neutral-200 text-center space-y-4 shadow-sm">
+    <div className="bg-white dark:bg-[#18181b] p-8 sm:p-12 rounded-3xl border border-neutral-200 dark:border-neutral-800 text-center space-y-4 shadow-sm">
       <div className="w-16 h-16 bg-[#ff5b49]/10 text-[#ff5b49] rounded-2xl flex items-center justify-center mx-auto">
         <HiOutlineBookOpen className="w-8 h-8" />
       </div>
-      <h3 className="text-xl font-bold text-neutral-800">
+      <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">
         Your Personal Archives are Quiet
       </h3>
-      <p className="text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
+      <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
         You have not yet cataloged any volumes on the communal shelves. Bestow your first book and ignite curiosity in another reader&apos;s journey.
       </p>
       <div className="pt-2">

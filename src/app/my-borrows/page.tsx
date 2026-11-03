@@ -73,34 +73,34 @@ const MyBorrowsPage = () => {
 
   if (isPending || (user && isFetching && borrowedBooks.length === 0)) {
     return (
-      <div className="min-h-screen bg-neutral-50 py-12 px-4 flex justify-center">
+      <div className="min-h-screen bg-neutral-50 dark:bg-[#0f0f10] py-12 px-4 flex justify-center transition-colors duration-200">
         <div className="max-w-4xl w-full space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-neutral-200 pb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
             <div className="space-y-2">
-              <div className="h-8 w-56 bg-neutral-300 rounded-lg animate-pulse" />
-              <div className="h-4 w-72 bg-neutral-200 rounded-md animate-pulse" />
+              <div className="h-8 w-56 bg-neutral-300 dark:bg-neutral-700 rounded-lg animate-pulse" />
+              <div className="h-4 w-72 bg-neutral-200 dark:bg-neutral-800 rounded-md animate-pulse" />
             </div>
-            <div className="h-7 w-20 bg-neutral-200 rounded-full animate-pulse" />
+            <div className="h-7 w-20 bg-neutral-200 dark:bg-neutral-800 rounded-full animate-pulse" />
           </div>
           <div className="space-y-4">
             {[1, 2].map((i) => (
               <div
                 key={i}
-                className="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 animate-pulse"
+                className="bg-white dark:bg-[#18181b] p-5 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 animate-pulse"
               >
                 <div className="flex items-center gap-4 w-full">
-                  <div className="w-20 h-28 bg-neutral-200 rounded-2xl shrink-0" />
+                  <div className="w-20 h-28 bg-neutral-200 dark:bg-neutral-800 rounded-2xl shrink-0" />
                   <div className="space-y-3 flex-1">
                     <div className="flex items-center gap-3">
-                      <div className="h-5 w-16 bg-neutral-200 rounded-full" />
-                      <div className="h-4 w-16 bg-neutral-200 rounded-md" />
+                      <div className="h-5 w-16 bg-neutral-200 dark:bg-neutral-800 rounded-full" />
+                      <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-800 rounded-md" />
                     </div>
-                    <div className="h-6 w-48 bg-neutral-300 rounded-lg" />
-                    <div className="h-4 w-32 bg-neutral-200 rounded-md" />
+                    <div className="h-6 w-48 bg-neutral-300 dark:bg-neutral-700 rounded-lg" />
+                    <div className="h-4 w-32 bg-neutral-200 dark:bg-neutral-800 rounded-md" />
                   </div>
                 </div>
-                <div className="flex items-center gap-2 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100">
-                  <div className="h-9 w-28 bg-neutral-200 rounded-xl" />
+                <div className="flex items-center gap-2 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
+                  <div className="h-9 w-28 bg-neutral-200 dark:bg-neutral-800 rounded-xl" />
                 </div>
               </div>
             ))}
@@ -112,12 +112,12 @@ const MyBorrowsPage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
-        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
-          <h2 className="text-2xl font-bold text-neutral-800">
+      <div className="min-h-[70vh] bg-neutral-50 dark:bg-[#0f0f10] flex flex-col justify-center items-center px-4 transition-colors duration-200">
+        <div className="bg-white dark:bg-[#18181b] p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-xl text-center max-w-md w-full space-y-4">
+          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">
             A Reader&apos;s Hearth Awaits
           </h2>
-          <p className="text-neutral-500 text-sm">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm">
             Please sign in to oversee your active reading shelf and manage the volumes currently in your care.
           </p>
           <Link
@@ -160,15 +160,15 @@ const MyBorrowsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 py-10 sm:py-12 px-4 sm:px-8 text-[#121212]">
+    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 dark:from-[#0f0f10] dark:via-[#141416] dark:to-[#0f0f10] py-10 sm:py-12 px-4 sm:px-8 text-[#121212] dark:text-neutral-100 transition-colors duration-200">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header Section */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
+            <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
               My Reading Desk
             </h1>
-            <p className="text-sm text-neutral-500 mt-1">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
               Volumes currently entrusted to your care and companioning your days.
             </p>
           </div>
@@ -179,14 +179,14 @@ const MyBorrowsPage = () => {
 
         {/* Books List / Empty State */}
         {borrowedBooks.length === 0 ? (
-          <div className="bg-white p-8 sm:p-12 rounded-3xl border border-neutral-200 text-center space-y-4 shadow-sm">
+          <div className="bg-white dark:bg-[#18181b] p-8 sm:p-12 rounded-3xl border border-neutral-200 dark:border-neutral-800 text-center space-y-4 shadow-sm">
             <div className="w-16 h-16 bg-[#ff5b49]/10 text-[#ff5b49] rounded-2xl flex items-center justify-center mx-auto">
               <HiOutlineBookmarkSlash className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-neutral-800">
+            <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-100">
               Your Reading Desk is Clear
             </h3>
-            <p className="text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
               No volumes are currently borrowed. Explore our grand catalog to invite your next story home!
             </p>
             <div className="pt-2">

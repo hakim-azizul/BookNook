@@ -186,12 +186,12 @@ const MyBooksPage = () => {
   // Unauthenticated user state
   if (!user) {
     return (
-      <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
-        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
-          <h2 className="text-2xl font-bold text-neutral-800">
+      <div className="min-h-[70vh] bg-neutral-50 dark:bg-[#0f0f10] flex flex-col justify-center items-center px-4 transition-colors duration-200">
+        <div className="bg-white dark:bg-[#18181b] p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-xl text-center max-w-md w-full space-y-4">
+          <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100">
             A Curator&apos;s Hearth Awaits
           </h2>
-          <p className="text-neutral-500 text-sm">
+          <p className="text-neutral-500 dark:text-neutral-400 text-sm">
             Please sign in to oversee the volumes you have bequeathed and manage your personal contributions.
           </p>
           <Link
@@ -206,7 +206,7 @@ const MyBooksPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 py-10 sm:py-12 px-4 sm:px-8 text-[#121212]">
+    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 dark:from-[#0f0f10] dark:via-[#141416] dark:to-[#0f0f10] py-10 sm:py-12 px-4 sm:px-8 text-[#121212] dark:text-neutral-100 transition-colors duration-200">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header Component */}
         <MyBooksHeader count={myBooks.length} />

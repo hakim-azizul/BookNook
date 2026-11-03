@@ -35,20 +35,20 @@ export default function EditBookModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 space-y-6 my-8 animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
+      <div className="bg-white dark:bg-[#18181b] rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 dark:border-neutral-800 space-y-6 my-8 animate-in fade-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-4">
           <div>
-            <h3 className="text-xl font-bold text-neutral-900">
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
               Refine Volume Details
             </h3>
-            <p className="text-xs text-neutral-500 mt-0.5">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
               Update the catalog record for this work
             </p>
           </div>
           <button
             onClick={onClose}
             aria-label="Close edit dialog"
-            className="p-2 text-neutral-400 hover:text-neutral-700 rounded-full hover:bg-neutral-100 transition-colors cursor-pointer"
+            className="p-2 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
           >
             <HiXMark className="w-5 h-5" />
           </button>

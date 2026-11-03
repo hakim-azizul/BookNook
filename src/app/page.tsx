@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FeatureSection from "./Components/Home/FeatureSection";
 import HeroSlider from "./Components/Home/HeroSlider";
 import NewArraivals from "./Components/Home/NewArraivals";
+import SanctuaryOfMinds from "./Components/Home/SanctuaryOfMinds";
 
 export const metadata: Metadata = {
   title: "Home | Read, Share & Borrow Books",
@@ -15,6 +16,8 @@ export default function Home() {
       <HeroSlider />
       <NewArraivals />
       <FeatureSection />
+      {/* The Sanctuary of Minds: Code & Literature (Positioned directly before the footer) */}
+      <SanctuaryOfMinds />
     </div>
   );
 }
