@@ -1,19 +1,19 @@
 import iBook from "@/types/bookType";
 import BookCard from "../Shared/BookCard";
 import Link from "next/link";
-import { getTokenFromServer } from "@/lib/getTokenFromServer";
+// import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const NewArraivals = async () => {
-  const token = await getTokenFromServer();
+  // const token = await getTokenFromServer();
 
   let newBooks: iBook[] = [];
   try {
     const res = await fetch(`${api}/new-arrivals`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      // headers: {
+      //   authorization: `Bearer ${token}`,
+      // },
       next: { revalidate: 60 },
     });
     if (res.ok) {
