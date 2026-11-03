@@ -1,4 +1,5 @@
 "use client";
+import React, { useState } from "react";
 import {
   Button,
   Description,
@@ -13,16 +14,21 @@ import {
   NumberField,
   ListBox,
   Select,
+  toast,
 } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const AddBookPage = () => {
   const { data: session, isPending } = useSession();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const user = session?.user;
+
   if (isPending) {
     return (
       <div className="min-h-screen bg-neutral-50 py-12 px-4 flex justify-center items-center">
@@ -79,21 +85,22 @@ const AddBookPage = () => {
       </div>
     );
   }
+
   if (!user) {
     return (
       <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
         <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full">
           <h2 className="text-2xl font-bold text-neutral-800 mb-2">
-            Please sign in
+            Please Sign In
           </h2>
           <p className="text-neutral-500 text-sm mb-6">
-            To make a contribution.
+            Sign in to contribute and share a book with the library.
           </p>
           <Link
-            href="/signin"
-            className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm"
+            href="/signin?callbackUrl=/add-book"
+            className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In
+            Sign In to Continue
           </Link>
         </div>
       </div>
@@ -103,32 +110,53 @@ const AddBookPage = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newBook = Object.fromEntries(formData.entries());
-    console.log(newBook);
+    const formValues = Object.fromEntries(formData.entries());
 
-    const token = await getTokenFromClient();
-    const res = await fetch(`${api}/add-book`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newBook),
-    });
+    const newBook = {
+      ...formValues,
+      quantity: Number(formValues.quantity) || 1,
+      createdAt: new Date().toISOString(),
+    };
 
-    const afterSubmit = await res.json();
-    console.log(afterSubmit);
+    try {
+      setLoading(true);
+      const token = await getTokenFromClient();
+      const res = await fetch(`${api}/add-book`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newBook),
+      });
+
+      const afterSubmit = await res.json().catch(() => ({}));
+
+      if (res.ok) {
+        toast.success("Book added successfully!");
+        router.push("/books");
+      } else {
+        toast.danger(
+          afterSubmit.error || afterSubmit.message || "Failed to add book.",
+        );
+      }
+    } catch (error) {
+      console.error("Error adding book:", error);
+      toast.danger("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-surface">
-      <Surface className="w-full max-w-xl p-8 rounded-3xl bg-[#f4f6f0] shadow-xl">
+    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 bg-surface">
+      <Surface className="w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#f4f6f0] shadow-xl">
         <Form className="w-full" onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-[#ff5b49] text-2xl font-bold">
               Add a New Book
             </Fieldset.Legend>
-            <Description className="text-gray-400 mb-4">
+            <Description className="text-gray-500 mb-4">
               Make a contribution to grow our digital library today!
             </Description>
             <Fieldset.Group className="space-y-4">
@@ -163,6 +191,7 @@ const AddBookPage = () => {
                   <FieldError />
                 </TextField>
               </div>
+
               {/* Category & Quantity */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Select
@@ -197,7 +226,7 @@ const AddBookPage = () => {
                         History
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="kids" textValue="kids">
+                      <ListBox.Item id="kids" textValue="Kids">
                         Kids
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -227,6 +256,8 @@ const AddBookPage = () => {
                   </NumberField.Group>
                 </NumberField>
               </div>
+
+              {/* Image URL */}
               <TextField
                 isRequired
                 name="image"
@@ -234,9 +265,8 @@ const AddBookPage = () => {
                   try {
                     new URL(value);
                     return null;
-                  } catch (_) {
+                  } catch {
                     return "Please enter a valid image URL";
-                    console.log(_);
                   }
                 }}
               >
@@ -244,6 +274,8 @@ const AddBookPage = () => {
                 <Input placeholder="https://example.com/image.jpg" />
                 <FieldError />
               </TextField>
+
+              {/* Description */}
               <TextField
                 isRequired
                 name="description"
@@ -288,12 +320,13 @@ const AddBookPage = () => {
             {/* Actions */}
             <Fieldset.Actions className="mt-6 flex items-center justify-end gap-3">
               <Button
-                className="bg-[#1a1a1a] text-white hover:bg-[#ff5b49] transition-colors"
+                className="bg-[#1a1a1a] text-white hover:bg-[#ff5b49] transition-colors cursor-pointer disabled:opacity-50"
                 type="submit"
+                isDisabled={loading}
               >
-                Add Book
+                {loading ? "Adding Book..." : "Add Book"}
               </Button>
-              <Button type="reset" variant="secondary">
+              <Button type="reset" variant="secondary" className="cursor-pointer">
                 Cancel
               </Button>
             </Fieldset.Actions>

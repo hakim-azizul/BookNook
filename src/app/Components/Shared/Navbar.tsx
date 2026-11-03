@@ -28,13 +28,19 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const navLinks = [
+  const baseNavLinks = [
     { name: "Home", path: "/" },
     { name: "All Books", path: "/books" },
-    { name: "Add Book", path: "/add-book" },
-    { name: "MY Books", path: "/my-books" },
-    { name: "MY Borrows", path: "/my-borrows" },
   ];
+
+  const authNavLinks = [
+    { name: "Add Book", path: "/add-book" },
+    { name: "My Books", path: "/my-books" },
+    { name: "My Borrows", path: "/my-borrows" },
+  ];
+
+  // Only show Add Book, My Books, and My Borrows if the user is authenticated
+  const navLinks = user ? [...baseNavLinks, ...authNavLinks] : baseNavLinks;
 
   return (
     <nav className="bg-white border-b border-neutral-100 sticky top-0 z-50 text-[#121212]">
@@ -44,7 +50,7 @@ const Navbar = () => {
           <div className="shrink-0 flex items-center">
             <Link href="/" className="flex items-center gap-2">
               <div className="text-[#ff5b49] text-3xl">
-                <Image src="/BookNook.png" width={35} height={35} alt="logo" />
+                <Image src="/BookNook.png" width={35} height={35} alt="BookNook Logo" />
               </div>
               <span className="text-2xl font-bold text-[#121212] tracking-tight">
                 Book<span className="text-[#ff0018]">Nook</span>
@@ -74,34 +80,35 @@ const Navbar = () => {
 
           {/* Desktop User Menu / Sign In Button */}
           <div className="hidden lg:flex items-center gap-3">
-            {session ? (
+            {user ? (
               <div className="relative" ref={profileRef}>
                 {/* Circular Profile Image Button */}
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center focus:outline-none ring-2 ring-[#ff5b49]/60 hover:ring-[#ff0018] rounded-full transition-all"
+                  aria-label="User Profile Menu"
+                  className="flex items-center focus:outline-none ring-2 ring-[#ff5b49]/60 hover:ring-[#ff0018] rounded-full transition-all cursor-pointer"
                 >
                   <Image
                     width={40}
                     height={40}
                     src={
-                      user?.image ||
+                      user.image ||
                       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150"
                     }
-                    alt={user?.name || "User"}
+                    alt={user.name || "User"}
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 </button>
 
-                {/* Desktop Modal */}
+                {/* Desktop Dropdown Modal */}
                 {isProfileOpen && (
-                  <div className="absolute right-0 mt-3 w-64 p-4 rounded-2xl bg-[#1a1a1a] border border-neutral-800 shadow-2xl z-50 space-y-4">
+                  <div className="absolute right-0 mt-3 w-64 p-4 rounded-2xl bg-[#1a1a1a] border border-neutral-800 shadow-2xl z-50 space-y-4 animate-in fade-in zoom-in-95 duration-150">
                     <div className="border-b border-neutral-800 pb-3">
                       <p className="text-sm font-bold text-white truncate">
-                        {user?.name}
+                        {user.name}
                       </p>
                       <p className="text-xs text-neutral-400 truncate mt-0.5">
-                        {user?.email}
+                        {user.email}
                       </p>
                     </div>
 
@@ -110,9 +117,7 @@ const Navbar = () => {
                       onClick={() => setIsProfileOpen(false)}
                       className="px-3 py-2 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors flex flex-row items-center gap-2"
                     >
-
                       <FaUser className="w-4 h-4" />
-
                       <span>My Profile</span>
                     </Link>
 
@@ -123,10 +128,10 @@ const Navbar = () => {
                           callbackURL: "/",
                         });
                       }}
-                      className="w-full text-left px-3 py-2 text-xs font-bold text-[#ff0018] hover:bg-[#ff0018]/10 rounded-xl transition-colors flex flex-row items-center gap-2"
+                      className="w-full text-left px-3 py-2 text-xs font-bold text-[#ff0018] hover:bg-[#ff0018]/10 rounded-xl transition-colors flex flex-row items-center gap-2 cursor-pointer"
                     >
                       <FaRightFromBracket className="w-4 h-4 text-[#ff0018]" />
-                      <span className="">Log Out</span>
+                      <span>Log Out</span>
                     </button>
                   </div>
                 )}
@@ -154,10 +159,11 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="text-neutral-300 hover:text-[#ff5b49] focus:outline-none"
+              aria-label="Toggle navigation menu"
+              className="p-2 text-neutral-700 hover:text-[#ff5b49] hover:bg-neutral-100 rounded-xl focus:outline-none transition-colors"
             >
               <svg
-                className="h-7 w-7"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -185,26 +191,26 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-[#121212] border-t border-neutral-800 px-4 pt-4 pb-6 space-y-4">
+        <div className="lg:hidden bg-[#121212] border-t border-neutral-800 px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top-2 duration-200">
           {/* User is logged in, show profile card */}
-          {session && (
+          {user && (
             <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded-2xl border border-neutral-800">
               <Image
                 width={40}
                 height={40}
                 src={
-                  user?.image ||
+                  user.image ||
                   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150"
                 }
-                alt={user?.name || "User"}
-                className="w-11 h-11 rounded-full object-cover ring-2 ring-[#ff5b49]/60"
+                alt={user.name || "User"}
+                className="w-11 h-11 rounded-full object-cover ring-2 ring-[#ff5b49]/60 shrink-0"
               />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold text-white truncate">
-                  {user?.name}
+                  {user.name}
                 </p>
                 <p className="text-xs text-neutral-400 truncate">
-                  {user?.email}
+                  {user.email}
                 </p>
               </div>
             </div>
@@ -230,7 +236,7 @@ const Navbar = () => {
               );
             })}
 
-            {session && (
+            {user && (
               <Link
                 href="/profile"
                 onClick={() => setIsOpen(false)}
@@ -241,9 +247,9 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Action Button*/}
+          {/* Mobile Action Button */}
           <div className="pt-3 border-t border-neutral-800">
-            {session ? (
+            {user ? (
               <button
                 onClick={() => {
                   setIsOpen(false);
@@ -251,7 +257,7 @@ const Navbar = () => {
                     callbackURL: "/",
                   });
                 }}
-                className="w-full text-left py-2.5 px-3 text-base font-semibold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 rounded-xl transition-colors flex flex-row items-center gap-2"
+                className="w-full text-left py-2.5 px-3 text-base font-semibold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 rounded-xl transition-colors flex flex-row items-center gap-2 cursor-pointer"
               >
                 <FiLogOut className="w-4 h-4 text-[#ff0018]" />
                 <span>Logout</span>

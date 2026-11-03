@@ -10,16 +10,28 @@ import {
   Label,
   Surface,
   TextField,
+  toast,
 } from "@heroui/react";
 import { SiGoogle } from "react-icons/si";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, signUp } from "@/lib/auth-client";
 
 const SignUpPage = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl =
+    searchParams.get("callbackUrl") ||
+    searchParams.get("callbackURL") ||
+    searchParams.get("redirect") ||
+    searchParams.get("redirectTo") ||
+    "/";
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
+
     try {
       const { error: signUpError } = await signUp.email({
         name: data.name as string,
@@ -29,40 +41,50 @@ const SignUpPage = () => {
       });
 
       if (signUpError) {
-        console.log("Signup error");
+        toast.danger(signUpError.message || "Signup failed. Please try again.");
       } else {
-        console.log("Signup succesed");
+        toast.success("Account created successfully! Please sign in.");
+        const nextTarget =
+          callbackUrl && callbackUrl !== "/"
+            ? `/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`
+            : "/signin";
+        router.push(nextTarget);
       }
-    } catch {
-      console.log("signup has an error");
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast.danger("Something went wrong during signup.");
     }
   };
+
   const handleGoogleSignIn = async () => {
     try {
       const { error } = await signIn.social({
         provider: "google",
+        callbackURL: callbackUrl && callbackUrl !== "/" ? callbackUrl : "/",
       });
       if (error) {
-        console.log("google signin error");
+        toast.danger(error.message || "Google signin failed.");
       } else {
-        console.log("google signin successful");
+        toast.success("Google signin successful!");
       }
-    } catch {
-      console.log("google signin error");
+    } catch (error) {
+      console.error("Google signin error:", error);
+      toast.danger("Google signin error occurred.");
     }
   };
+
   return (
-    <div className="flex items-center justify-center rounded-3xl bg-surface p-6">
-      <Surface className="w-full max-w-xl min-w-95 p-30 rounded-3xl bg-[#f4f6f0]">
+    <div className="flex items-center justify-center rounded-3xl bg-surface p-4 sm:p-6 min-h-[80vh]">
+      <Surface className="w-full max-w-xl p-6 sm:p-12 rounded-3xl bg-[#f4f6f0] shadow-xl">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
-            <Fieldset.Legend className="text-rose-500 text-2xl">
+            <Fieldset.Legend className="text-rose-500 text-2xl font-bold">
               Join BookNook
             </Fieldset.Legend>
-            <Description className="text-[#1a1a1a]">
+            <Description className="text-[#1a1a1a] mb-4">
               Signup with your credentials, to join the reader community
             </Description>
-            <Fieldset.Group>
+            <Fieldset.Group className="space-y-4">
               <TextField
                 isRequired
                 name="name"
@@ -77,6 +99,7 @@ const SignUpPage = () => {
                 <Input placeholder="John Doe" />
                 <FieldError />
               </TextField>
+
               <TextField
                 isRequired
                 name="image"
@@ -84,16 +107,16 @@ const SignUpPage = () => {
                   try {
                     new URL(value);
                     return null;
-                  } catch (_) {
+                  } catch {
                     return "Please enter a valid image URL";
-                    console.log(_)
                   }
                 }}
               >
-                <Label>Profile Image</Label>
-                <Input placeholder="https://example.com/image.jpg" />
+                <Label>Profile Image URL</Label>
+                <Input placeholder="https://example.com/avatar.jpg" />
                 <FieldError />
               </TextField>
+
               <TextField
                 isRequired
                 name="email"
@@ -109,6 +132,7 @@ const SignUpPage = () => {
                 <Input placeholder="john@example.com" />
                 <FieldError />
               </TextField>
+
               <TextField
                 isRequired
                 minLength={6}
@@ -128,32 +152,49 @@ const SignUpPage = () => {
                 }}
               >
                 <Label>Password</Label>
-                <Input placeholder="Enter your password" />
-                <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
+                <Input placeholder="Create a strong password" />
                 <FieldError />
               </TextField>
             </Fieldset.Group>
-            <Fieldset.Actions>
-              <Button className="bg-[#1a1a1a]" type="submit">
-                Sign In
-              </Button>
-              <Button type="reset" variant="tertiary">
-                Cancel
-              </Button>
+
+            <Fieldset.Actions className="mt-6 flex flex-col gap-3">
+              <div className="flex items-center gap-3 w-full">
+                <Button
+                  className="bg-[#1a1a1a] text-white w-full py-2.5 rounded-xl cursor-pointer"
+                  type="submit"
+                >
+                  Create Account
+                </Button>
+                <Button
+                  type="reset"
+                  variant="secondary"
+                  className="w-full py-2.5 rounded-xl cursor-pointer"
+                >
+                  Cancel
+                </Button>
+              </div>
               <Button
                 onPress={handleGoogleSignIn}
-                className="w-full border border-[#a1a1] hover:border-[#ff5b49]"
-                variant="tertiary"
+                className="w-full border border-[#a1a1a1] hover:border-[#ff5b49] py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                variant="secondary"
               >
-                <SiGoogle className="text-[#ff5b49]" />
-                Sign in with Google
+                <SiGoogle className="text-[#ff5b49] w-4 h-4" />
+                Sign up with Google
               </Button>
             </Fieldset.Actions>
-            <h4>
-              Already a member?{" "}
+
+            <h4 className="mt-6 text-center text-sm text-neutral-600">
+              Already have an account?{" "}
               <span>
-                <Link className="text-[#ff0018] underline" href="/signin">
-                  Sign In
+                <Link
+                  className="text-[#ff0018] underline font-medium"
+                  href={
+                    callbackUrl && callbackUrl !== "/"
+                      ? `/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`
+                      : "/signin"
+                  }
+                >
+                  SIGN IN
                 </Link>
               </span>
             </h4>

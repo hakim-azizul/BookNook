@@ -1,144 +1,176 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import { FaArrowRight, FaStar, FaShieldAlt } from 'react-icons/fa';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import {
+  FaArrowRight,
+  FaStar,
+  FaBookOpen,
+  FaHandHoldingHeart,
+} from "react-icons/fa6";
+import { HiSparkles } from "react-icons/hi2";
+import Link from "next/link";
+import Image from "next/image";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import Image from 'next/image';
+import "swiper/css";
+import "swiper/css/pagination";
 
 const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      badge: "EDITOR CHOICE ⭐",
-      title: "Our Sci-Fi & Fantasy Picks",
-      description: "Explore worlds beyond imagination with our handpicked collection of bestselling sci-fi and epic fantasy novels.",
-      price: "$24.55",
-      originalPrice: "$45.55",
-      image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
-      bgClass: "bg-[#fff5f3]", 
+      badge: "Community Favorite",
+      badgeIcon: HiSparkles,
+      title: "Discover & Borrow Captivating Reads",
+      description:
+        "Explore a rich catalog of timeless literature, fiction, and philosophy contributed by book lovers worldwide. Borrow titles instantly with zero friction.",
+      rating: "4.9 Library Rating",
+      highlights: ["Free Member Access", "Instant Borrowing", "No Hidden Fees"],
+      primaryCta: { text: "Explore All Books", href: "/books" },
+      secondaryCta: { text: "Join Community", href: "/signup" },
+      image:
+        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
+      bgClass: "bg-[#fff7f5]",
     },
     {
       id: 2,
-      badge: "🔥 BESTSELLER OF 2026",
-      title: "Top 10 Books To Make It A Great Year",
-      description: "Transform your daily habits, boost productivity, and master your mindset with these life-changing reads.",
-      price: "$19.99",
-      originalPrice: "$35.00",
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop",
+      badge: "Share Your Bookshelf",
+      badgeIcon: FaHandHoldingHeart,
+      title: "Share Your Books, Inspire Other Minds",
+      description:
+        "Give your favorite books a second life. Contribute your personal collection to the community shelf and help fellow readers discover unforgettable stories.",
+      rating: "5.0 Contributor Trust",
+      highlights: ["Fast Book Listing", "Community Impact", "Eco-Friendly Exchange"],
+      primaryCta: { text: "Contribute a Book", href: "/add-book" },
+      secondaryCta: { text: "Browse Collection", href: "/books" },
+      image:
+        "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop",
       bgClass: "bg-[#f8f6f0]",
     },
     {
       id: 3,
-      badge: "✨ NEW ARRIVAL",
-      title: "Discover The Best Novels Of The Season",
-      description: "Immerse yourself in breathtaking storytelling, mystery thrillers, and award-winning masterpieces.",
-      price: "$29.00",
-      originalPrice: "$50.00",
-      image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop",
+      badge: "Fresh Curations",
+      badgeIcon: FaBookOpen,
+      title: "Curated Knowledge for Curious Minds",
+      description:
+        "From transformative science and technology to thought-provoking classics, expand your worldview with books carefully maintained by our community.",
+      rating: "4.8 Reader Choice",
+      highlights: ["Curated Categories", "Diverse Voices", "Daily New Arrivals"],
+      primaryCta: { text: "Browse Catalog", href: "/books" },
+      secondaryCta: { text: "My Reading Shelf", href: "/my-borrows" },
+      image:
+        "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop",
       bgClass: "bg-[#f2f6f8]",
     },
   ];
 
   return (
-    <div className="w-full max-w-8xl mx-auto px-4 py-8">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <Swiper
         modules={[Autoplay, Pagination]}
-        spaceBetween={30}
+        spaceBetween={24}
         slidesPerView={1}
         speed={800}
         autoplay={{
-          delay: 5000,
+          delay: 5500,
           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
         }}
         loop={true}
-        className="rounded-3xl shadow-xl overflow-hidden bg-white border border-gray-100 hero-slider-custom"
+        className="rounded-3xl shadow-xl overflow-hidden bg-white border border-neutral-100"
       >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <div className={`w-full min-h-115 md:min-h-125 ${slide.bgClass} flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-12 relative overflow-hidden transition-colors duration-500`}>
-              
-              {/* Background Decorative Soft Elements */}
-              <div className="absolute -top-24 -left-24 w-72 h-72 bg-white/60 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#ff5b49]/10 rounded-full blur-3xl pointer-events-none" />
+        {slides.map((slide) => {
+          const BadgeIcon = slide.badgeIcon;
+          return (
+            <SwiperSlide key={slide.id}>
+              <div
+                className={`w-full min-h-125 md:min-h-130 ${slide.bgClass} flex flex-col-reverse md:flex-row items-center justify-between px-6 sm:px-12 md:px-16 py-10 md:py-14 relative overflow-hidden transition-colors duration-500`}
+              >
+                {/* Background Decorative Soft Elements */}
+                <div className="absolute -top-24 -left-24 w-80 h-80 bg-white/70 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-[#ff5b49]/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Left Side: Image with Frame & Rating Badge */}
-              <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0 relative z-10">
-                <div className="relative group">
-                  {/* Rating Badge */}
-                  <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 text-xs font-bold text-[#1a1a1a] z-20 border border-gray-100 animate-bounce">
-                    <FaStar className="text-amber-400 text-xs" />
-                    <span>4.9 Rating</span>
+                {/* Left/Content Side */}
+                <div className="w-full md:w-7/12 flex flex-col items-start text-left space-y-4 sm:space-y-5 relative z-10 pt-6 md:pt-0">
+                  {/* Badge */}
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-white shadow-sm border border-neutral-200/80 text-[#ff5b49]">
+                    <BadgeIcon className="w-3.5 h-3.5" />
+                    <span>{slide.badge}</span>
+                  </span>
+
+                  {/* Title */}
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-tight tracking-tight">
+                    {slide.title}
+                  </h2>
+
+                  {/* Description */}
+                  <p className="text-neutral-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                    {slide.description}
+                  </p>
+
+                  {/* Highlight Feature Badges */}
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    {slide.highlights.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs font-medium px-3 py-1 bg-white/80 backdrop-blur-xs text-neutral-700 rounded-lg border border-neutral-200/60 shadow-2xs"
+                      >
+                        ✓ {item}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Image Box */}
-                  <div className="p-3 bg-white rounded-2xl shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 border border-gray-100">
-                    <Image 
-                      src={slide.image}
-                      width={300}
-                      height={400}
-                      alt={slide.title} 
-                      className="w-60 md:w-72 h-72 md:h-80 object-cover rounded-xl"
-                    />
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap items-center gap-3 pt-3 w-full sm:w-auto">
+                    <Link
+                      href={slide.primaryCta.href}
+                      className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 bg-linear-to-r from-[#ff5b49] to-[#ff0018] hover:opacity-95 text-white font-bold text-sm rounded-2xl shadow-lg shadow-[#ff5b49]/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer group"
+                    >
+                      <span>{slide.primaryCta.text}</span>
+                      <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
+                    <Link
+                      href={slide.secondaryCta.href}
+                      className="inline-flex items-center justify-center px-5 sm:px-6 py-3.5 bg-white hover:bg-neutral-100 text-[#1a1a1a] font-semibold text-sm rounded-2xl border border-neutral-200 shadow-sm transition-all cursor-pointer"
+                    >
+                      {slide.secondaryCta.text}
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right/Image Side */}
+                <div className="w-full md:w-5/12 flex justify-center items-center relative z-10 mb-4 md:mb-0">
+                  <div className="relative group">
+                    {/* Rating Badge */}
+                    <div className="absolute -top-3 -right-3 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 text-xs font-bold text-[#1a1a1a] z-20 border border-neutral-200/70">
+                      <FaStar className="text-amber-400 text-xs" />
+                      <span>{slide.rating}</span>
+                    </div>
+
+                    {/* Book Frame */}
+                    <div className="p-3 bg-white rounded-3xl shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500 border border-neutral-100">
+                      <Image
+                        src={slide.image}
+                        width={320}
+                        height={420}
+                        alt={slide.title}
+                        className="w-56 sm:w-64 md:w-72 h-64 sm:h-72 md:h-84 object-cover rounded-2xl shadow-inner"
+                        priority
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Right Side: Text & Actions using #1a1a1a and #ff5b49 */}
-              <div className="w-full md:w-1/2 flex flex-col items-start text-left space-y-4 relative z-10 pl-0 md:pl-6">
-                
-                {/* Badge */}
-                <span className="inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-white shadow-sm border border-gray-100 text-[#ff5b49]">
-                  {slide.badge}
-                </span>
-
-                {/* Title in #1a1a1a */}
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-tight">
-                  {slide.title}
-                </h2>
-
-                {/* Description */}
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-lg">
-                  {slide.description}
-                </p>
-
-                {/* Pricing Area */}
-                <div className="flex items-baseline gap-3 pt-1">
-                  <span className="text-3xl font-extrabold text-[#1a1a1a]">
-                    {slide.price}
-                  </span>
-                  <span className="text-sm text-gray-400 line-through font-medium">
-                    {slide.originalPrice}
-                  </span>
-                </div>
-
-                {/* CTA Button in #ff5b49 */}
-                <div className="flex flex-wrap items-center gap-4 pt-3">
-                  <button className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#ff5b49] hover:bg-[#e04a3b] text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                    <span>Shop Now</span>
-                    <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
-                  </button>
-
-                  <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-                    <FaShieldAlt className="text-[#ff5b49]" />
-                    <span>Secure Checkout</span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );
-}
+};
 
 export default HeroSlider;

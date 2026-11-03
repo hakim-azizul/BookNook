@@ -7,7 +7,6 @@ import {
   HiOutlineShieldCheck,
   HiOutlineBookOpen,
   HiOutlineBookmark,
-  HiOutlinePencilSquare,
   HiOutlineSparkles,
 } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
@@ -76,15 +75,16 @@ const ProfilePage = () => {
             Please sign in to view your profile page.
           </p>
           <Link
-            href="/signin"
-            className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm"
+            href="/signin?callbackUrl=/profile"
+            className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In
+            Sign In to Continue
           </Link>
         </div>
       </div>
     );
   }
+
   return (
     <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 py-12 px-4 sm:px-8 text-[#121212]">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -115,15 +115,11 @@ const ProfilePage = () => {
                 />
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Badges */}
               <div className="flex items-center gap-3">
-                <button
-                  onClick={() => alert("Edit profile feature coming soon!")}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-xl transition-colors border border-neutral-200"
-                >
-                  <HiOutlinePencilSquare className="w-4 h-4 text-neutral-600" />
-                  <span>Edit Profile</span>
-                </button>
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl">
+                  Active Reader
+                </span>
               </div>
             </div>
 
