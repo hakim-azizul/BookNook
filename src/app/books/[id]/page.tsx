@@ -1,7 +1,5 @@
 import BookDetails from "@/app/Components/BookDetails/BookDetails";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 interface BookDetailsPageProps {
@@ -11,10 +9,7 @@ interface BookDetailsPageProps {
 const BookDetailsPage = async ({ params }: BookDetailsPageProps) => {
   const { id } = await params;
 
-  const jwtToken = await auth.api.getToken({
-    headers: await headers(),
-  });
-  const token = jwtToken?.token;
+  const token = await getTokenFromServer()
 
   let book = null;
   try {

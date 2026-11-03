@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useSession } from "@/lib/auth-client";
 import { HiOutlineBookmark } from "react-icons/hi2";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface BorrowBtnProps {
   bookId: string;
@@ -11,6 +12,8 @@ interface BorrowBtnProps {
   quantity: string | number;
 }
 
+const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 const BorrowBtn = ({
   bookId,
   title,
@@ -18,7 +21,6 @@ const BorrowBtn = ({
   author,
   quantity,
 }: BorrowBtnProps) => {
-  const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const currentQty =
@@ -41,9 +43,13 @@ const BorrowBtn = ({
 
     try {
       setLoading(true);
+      const token = await getTokenFromClient();
       const res = await fetch(`${api}/borrow`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(borrowData),
       });
 

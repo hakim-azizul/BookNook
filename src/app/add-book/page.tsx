@@ -16,6 +16,7 @@ import {
 } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
 import Link from "next/link";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const api = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -104,11 +105,17 @@ const AddBookPage = () => {
     const formData = new FormData(e.currentTarget);
     const newBook = Object.fromEntries(formData.entries());
     console.log(newBook);
+
+    const token = await getTokenFromClient();
     const res = await fetch(`${api}/add-book`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(newBook),
     });
+
     const afterSubmit = await res.json();
     console.log(afterSubmit);
   };

@@ -4,6 +4,7 @@ import { useSession } from "@/lib/auth-client";
 import { HiOutlineBookmarkSlash } from "react-icons/hi2";
 import BorrowCard from "../Components/BorrowBook/BorrowCard";
 import Link from "next/link";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface BorrowedBook {
   _id: string;
@@ -22,14 +23,25 @@ const MyBorrowsPage = () => {
   const user = session?.user;
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`${API_URL}/borrow/${encodeURIComponent(user.email)}`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchBorrowedBooks = async () => {
+      try {
+        const token = await getTokenFromClient();
+        const res = await fetch(
+          `${API_URL}/borrow/${encodeURIComponent(user.email)}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        const data = await res.json();
         setBorrowedBooks(data);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error fetching borrows:", err);
-      });
+      }
+    };
+    fetchBorrowedBooks();
   }, [user?.email]);
   if (isPending) {
     return (
@@ -104,8 +116,12 @@ const MyBorrowsPage = () => {
   }
   const handleReturnBook = async (borrowId: string) => {
     try {
+      const token = await getTokenFromClient();
       const res = await fetch(`${API_URL}/borrows/${borrowId}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       });
 
       if (res.ok) {

@@ -22,6 +22,7 @@ import {
 import MyBookCard from "../Components/MyBook/MyBookCard";
 import iBook from "@/types/bookType";
 import Link from "next/link";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
@@ -39,14 +40,26 @@ const MyBooksPage = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`${API_URL}/books/user/${encodeURIComponent(user.email)}`)
-      .then((res) => res.json())
-      .then((data) => {
+
+    const fetchMyBooks = async () => {
+      try {
+        const token = await getTokenFromClient();
+        const res = await fetch(
+          `${API_URL}/books/user/${encodeURIComponent(user.email)}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        const data = await res.json();
         setMyBooks(data);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error fetching my books:", err);
-      });
+      }
+    };
+    fetchMyBooks();
   }, [user?.email]);
 
   if (isPending) {
@@ -134,10 +147,12 @@ const MyBooksPage = () => {
     const updatedData = Object.fromEntries(formData.entries());
 
     try {
+      const token = await getTokenFromClient();
       const res = await fetch(`${API_URL}/books/${selectedBook._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(updatedData),
       });
@@ -171,8 +186,12 @@ const MyBooksPage = () => {
     if (!bookToDelete) return;
 
     try {
+      const token = await getTokenFromClient();
       const res = await fetch(`${API_URL}/books/${bookToDelete}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       });
 
       if (res.ok) {
