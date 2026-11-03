@@ -68,7 +68,7 @@ const MyBooksPage = () => {
       } catch (err) {
         if (!ignore) {
           console.error("Error fetching my books:", err);
-          toast.danger("Could not load your books. Please try refreshing.");
+          toast.danger("Could not retrieve your curated archives. Please try refreshing.");
           setMyBooks([]);
           setIsFetching(false);
         }
@@ -128,13 +128,13 @@ const MyBooksPage = () => {
         );
         setIsEditModalOpen(false);
         setSelectedBook(null);
-        toast.success("Book updated successfully!");
+        toast.success("Volume details gracefully updated in the catalog!");
       } else {
-        toast.danger(data.error || data.message || "Failed to update book.");
+        toast.danger(data.error || data.message || "Failed to update volume record.");
       }
     } catch (error) {
       console.error("Update error:", error);
-      toast.danger("Something went wrong while updating the book.");
+      toast.danger("An unexpected disruption occurred during the update.");
     } finally {
       setIsUpdating(false);
     }
@@ -166,13 +166,13 @@ const MyBooksPage = () => {
         setMyBooks((prev) => prev.filter((b) => b._id !== bookToDelete.id));
         setIsDeleteModalOpen(false);
         setBookToDelete(null);
-        toast.success("Book deleted successfully!");
+        toast.success("Volume has been retired from circulation.");
       } else {
-        toast.danger(data.error || data.message || "Failed to delete book.");
+        toast.danger(data.error || data.message || "Failed to retire volume.");
       }
     } catch (error) {
       console.error("Delete error:", error);
-      toast.danger("Something went wrong while deleting the book.");
+      toast.danger("An unexpected disruption occurred during volume retirement.");
     } finally {
       setIsDeleting(false);
     }
@@ -189,16 +189,16 @@ const MyBooksPage = () => {
       <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
         <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
           <h2 className="text-2xl font-bold text-neutral-800">
-            Please Sign In
+            A Curator&apos;s Hearth Awaits
           </h2>
           <p className="text-neutral-500 text-sm">
-            Sign in to manage your contributed books and access your personal catalog.
+            Please sign in to oversee the volumes you have bequeathed and manage your personal contributions.
           </p>
           <Link
             href="/signin?callbackUrl=/my-books"
             className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In to Continue
+            Enter Sanctuary
           </Link>
         </div>
       </div>

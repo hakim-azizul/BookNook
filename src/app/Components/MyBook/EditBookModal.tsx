@@ -39,10 +39,10 @@ export default function EditBookModal({
         <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
           <div>
             <h3 className="text-xl font-bold text-neutral-900">
-              Edit Book Details
+              Refine Volume Details
             </h3>
             <p className="text-xs text-neutral-500 mt-0.5">
-              Update your book information below
+              Update the catalog record for this work
             </p>
           </div>
           <button
@@ -69,12 +69,12 @@ export default function EditBookModal({
                   defaultValue={book.title}
                   validate={(value) => {
                     if (value.length < 3) {
-                      return "Book Title must be at least 3 characters";
+                      return "Title must be at least 3 characters";
                     }
                     return null;
                   }}
                 >
-                  <Label>Book Title</Label>
+                  <Label>Title of the Work</Label>
                   <Input placeholder="The Republic" />
                   <FieldError />
                 </TextField>
@@ -85,12 +85,12 @@ export default function EditBookModal({
                   defaultValue={book.author}
                   validate={(value) => {
                     if (value.length < 3) {
-                      return "Author Name must be at least 3 characters";
+                      return "Author name must be at least 3 characters";
                     }
                     return null;
                   }}
                 >
-                  <Label>Author</Label>
+                  <Label>Literary Architect / Author</Label>
                   <Input placeholder="Plato" />
                   <FieldError />
                 </TextField>
@@ -102,9 +102,9 @@ export default function EditBookModal({
                   className="w-full"
                   name="category"
                   defaultSelectedKey={book.category?.toLowerCase()}
-                  placeholder="Select Category"
+                  placeholder="Select Literary Realm"
                 >
-                  <Label>Category</Label>
+                  <Label>Literary Realm</Label>
                   <Select.Trigger>
                     <Select.Value />
                     <Select.Indicator />
@@ -112,35 +112,35 @@ export default function EditBookModal({
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Fiction
+                        Fiction &amp; Literature
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
-                        Non-Fiction
+                        Non-Fiction &amp; Essays
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="philosophy" textValue="Philosophy">
-                        Philosophy
+                        Philosophy &amp; Thought
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="science" textValue="Science & Tech">
-                        Science & Tech
+                        Science &amp; Technology
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="history" textValue="History">
-                        History
+                        History &amp; Chronicle
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Kids
+                        Children &amp; Young Readers
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="religion" textValue="Religion">
-                        Religion
+                        Theology &amp; Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="others" textValue="Others">
-                        Others
+                        General &amp; Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                     </ListBox>
@@ -154,7 +154,7 @@ export default function EditBookModal({
                   defaultValue={Number(book.quantity) || 1}
                   name="quantity"
                 >
-                  <Label>Quantity</Label>
+                  <Label>Copies in Circulation</Label>
                   <NumberField.Group className="w-full">
                     <NumberField.DecrementButton />
                     <NumberField.Input className="w-full text-center" />
@@ -173,12 +173,12 @@ export default function EditBookModal({
                     new URL(value);
                     return null;
                   } catch {
-                    return "Please enter a valid image URL";
+                    return "Please enter a valid cover artwork URL";
                   }
                 }}
               >
-                <Label>Book Image URL</Label>
-                <Input placeholder="https://example.com/image.jpg" />
+                <Label>Cover Artwork URL</Label>
+                <Input placeholder="https://example.com/cover.jpg" />
                 <FieldError />
               </TextField>
 
@@ -189,13 +189,13 @@ export default function EditBookModal({
                 defaultValue={book.description}
                 validate={(value) => {
                   if (value.length < 10) {
-                    return "Description must be at least 10 characters";
+                    return "Synopsis must be at least 10 characters";
                   }
                   return null;
                 }}
               >
-                <Label>Short Description</Label>
-                <TextArea placeholder="Why should anyone read this book?" />
+                <Label>Synopsis &amp; Reader&apos;s Invitation</Label>
+                <TextArea placeholder="What makes this volume unforgettable?" />
                 <Description>Minimum 10 characters</Description>
                 <FieldError />
               </TextField>
@@ -216,7 +216,7 @@ export default function EditBookModal({
               disabled={isUpdating}
               className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#ff5b49] hover:bg-[#ff0018] transition-colors shadow-sm shadow-[#ff5b49]/30 cursor-pointer disabled:opacity-50"
             >
-              {isUpdating ? "Saving Changes..." : "Save Changes"}
+              {isUpdating ? "Saving Amendments..." : "Save Amendments"}
             </button>
           </div>
         </Form>

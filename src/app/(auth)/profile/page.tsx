@@ -1,19 +1,33 @@
 "use client";
 import React from "react";
-import { useSession } from "@/lib/auth-client";
+import { useSession, signOut } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   HiOutlineShieldCheck,
   HiOutlineBookOpen,
   HiOutlineBookmark,
   HiOutlineSparkles,
 } from "react-icons/hi2";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiLogOut } from "react-icons/fi";
+import { toast } from "@heroui/react";
 
 const ProfilePage = () => {
   const { data: session, isPending } = useSession();
+  const router = useRouter();
   const user = session?.user;
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Sign out error:", error);
+    }
+    toast.success("Successfully signed out. May your literary journey continue!");
+    router.push("/");
+    router.refresh();
+  };
 
   if (isPending) {
     return (
@@ -67,18 +81,18 @@ const ProfilePage = () => {
   if (!user) {
     return (
       <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
-        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full">
-          <h2 className="text-2xl font-bold text-neutral-800 mb-2">
-            Access Denied
+        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
+          <h2 className="text-2xl font-bold text-neutral-800">
+            A Reader&apos;s Hearth Awaits
           </h2>
-          <p className="text-neutral-500 text-sm mb-6">
-            Please sign in to view your profile page.
+          <p className="text-neutral-500 text-sm">
+            Please sign in to access your personal reading sanctuary and curated archives.
           </p>
           <Link
             href="/signin?callbackUrl=/profile"
             className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In to Continue
+            Enter the Sanctuary
           </Link>
         </div>
       </div>
@@ -86,7 +100,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 py-12 px-4 sm:px-8 text-[#121212]">
+    <div className="min-h-screen bg-linear-to-b from-neutral-50 via-white to-neutral-100 py-10 sm:py-12 px-4 sm:px-8 text-[#121212]">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Profile Card Header */}
         <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-sm overflow-hidden">
@@ -94,7 +108,7 @@ const ProfilePage = () => {
           <div className="h-32 sm:h-40 bg-linear-to-r from-[#ff5b49] to-[#ff0018] relative">
             <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-md">
               <HiOutlineSparkles className="w-4 h-4 text-amber-200 animate-pulse" />
-              <span>BookNook Member</span>
+              <span>Bibliophile Guild Member</span>
             </span>
           </div>
 
@@ -108,18 +122,25 @@ const ProfilePage = () => {
                     user.image ||
                     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300"
                   }
-                  alt={user.name || "User Avatar"}
+                  alt={user.name || "Reader Avatar"}
                   width={144}
                   height={144}
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              {/* Action Badges */}
+              {/* Action Buttons */}
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl">
                   Active Reader
                 </span>
+                <button
+                  onClick={handleSignOut}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 border border-[#ff0018]/20 rounded-xl transition-colors cursor-pointer"
+                >
+                  <FiLogOut className="w-3.5 h-3.5" />
+                  <span>Depart Sanctuary</span>
+                </button>
               </div>
             </div>
 
@@ -128,14 +149,17 @@ const ProfilePage = () => {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
                 {user.name}
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-500 pt-1">
+              <p className="text-xs text-neutral-400 font-medium italic">
+                Reader &amp; Contributor to the Commonwealth of Letters
+              </p>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-500 pt-2">
                 <span className="flex items-center gap-1.5">
                   <FiMail className="w-4 h-4 text-[#ff5b49]" />
                   {user.email}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <HiOutlineShieldCheck className="w-4 h-4 text-[#ff5b49]" />
-                  Verified Account
+                  Verified Bibliophile
                 </span>
               </div>
             </div>
@@ -154,10 +178,10 @@ const ProfilePage = () => {
               </div>
               <div>
                 <h3 className="font-bold text-neutral-900 group-hover:text-[#ff5b49] transition-colors">
-                  My Contributed Books
+                  My Curated Archives
                 </h3>
                 <p className="text-xs text-neutral-500 mt-0.5">
-                  Manage all books you added
+                  Volumes you have bequeathed to the communal shelves
                 </p>
               </div>
             </div>
@@ -176,10 +200,10 @@ const ProfilePage = () => {
               </div>
               <div>
                 <h3 className="font-bold text-neutral-900 group-hover:text-[#ff5b49] transition-colors">
-                  My Borrowed Books
+                  My Reading Desk
                 </h3>
                 <p className="text-xs text-neutral-500 mt-0.5">
-                  Track your reading shelf
+                  Volumes currently keeping you company
                 </p>
               </div>
             </div>

@@ -34,21 +34,21 @@ const NewArraivals = async () => {
           <div className="space-y-3 text-center md:text-left">
             {/* Top Badge */}
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20 shadow-xs">
-              ✨ Freshly Added
+              ✨ Fresh from the Presses
             </span>
 
             {/* Main Title */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Explore Our{" "}
+              Recently Welcomed to Our{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#ff5b49] to-[#ff0018]">
-                New Arrivals
+                Shelves
               </span>
             </h2>
 
             {/* Subtitle */}
-            <p className="text-neutral-600 max-w-xl text-sm sm:text-base">
-              Dive into the latest literary masterpieces and community-shared
-              treasures freshly added to our digital library.
+            <p className="text-neutral-600 max-w-xl text-sm sm:text-base leading-relaxed">
+              Newly cataloged volumes and treasured manuscripts generously gifted by
+              fellow bibliophiles, ready to begin their next chapter with you.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ const NewArraivals = async () => {
               href="/books"
               className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] rounded-2xl shadow-lg shadow-[#ff5b49]/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
-              <span>View All Books</span>
+              <span>Peruse Full Catalog</span>
               <span className="group-hover:translate-x-1 transition-transform">
                 &rarr;
               </span>
@@ -66,7 +66,7 @@ const NewArraivals = async () => {
           </div>
         </div>
 
-        {/* Books Grid with Responsive Screen Size Filtering */}
+        {/* Books Grid */}
         {Array.isArray(newBooks) && newBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
             {newBooks.map((newBook: iBook, index: number) => {
@@ -90,7 +90,7 @@ const NewArraivals = async () => {
         ) : (
           <div className="text-center py-16 bg-white rounded-3xl border border-neutral-200 shadow-sm">
             <p className="text-neutral-500 text-base sm:text-lg">
-              No new arrivals found at the moment. Explore our full library catalog!
+              The archives are quietly settling. No recent arrivals this hour—explore our timeless collection above!
             </p>
           </div>
         )}

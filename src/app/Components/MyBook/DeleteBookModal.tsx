@@ -28,7 +28,7 @@ export default function DeleteBookModal({
           </div>
           <button
             onClick={onClose}
-            aria-label="Close delete dialog"
+            aria-label="Close retirement dialog"
             className="p-2 text-neutral-400 hover:text-neutral-700 rounded-full hover:bg-neutral-100 transition-colors cursor-pointer"
           >
             <HiXMark className="w-5 h-5" />
@@ -37,18 +37,18 @@ export default function DeleteBookModal({
 
         <div className="space-y-2">
           <h3 className="text-xl font-bold text-neutral-900">
-            Delete Book Confirmation
+            Retire Volume from Circulation
           </h3>
           <p className="text-sm text-neutral-500 leading-relaxed">
-            Are you sure you want to delete{" "}
+            Are you certain you wish to withdraw{" "}
             {bookTitle ? (
               <span className="font-semibold text-neutral-800">
                 &ldquo;{bookTitle}&rdquo;
               </span>
             ) : (
-              "this book"
+              "this volume"
             )}{" "}
-            from the library? This action cannot be undone.
+            from the communal shelves? This action permanently closes its chapter in our library catalog.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function DeleteBookModal({
             disabled={isDeleting}
             className="px-5 py-2.5 rounded-xl text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 transition-colors cursor-pointer disabled:opacity-50"
           >
-            Cancel
+            Keep in Circulation
           </button>
           <button
             type="button"
@@ -67,7 +67,7 @@ export default function DeleteBookModal({
             disabled={isDeleting}
             className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#ff5b49] hover:bg-[#ff0018] transition-colors shadow-sm shadow-[#ff5b49]/30 cursor-pointer disabled:opacity-50"
           >
-            {isDeleting ? "Deleting..." : "Yes, Delete"}
+            {isDeleting ? "Retiring..." : "Yes, Withdraw Volume"}
           </button>
         </div>
       </div>

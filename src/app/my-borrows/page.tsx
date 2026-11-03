@@ -57,7 +57,7 @@ const MyBorrowsPage = () => {
       } catch (err) {
         if (!ignore) {
           console.error("Error fetching borrows:", err);
-          toast.danger("Could not load borrowed books. Please try refreshing.");
+          toast.danger("Could not retrieve your borrowed volumes. Please try refreshing.");
           setBorrowedBooks([]);
           setIsFetching(false);
         }
@@ -115,16 +115,16 @@ const MyBorrowsPage = () => {
       <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
         <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
           <h2 className="text-2xl font-bold text-neutral-800">
-            Please Sign In
+            A Reader&apos;s Hearth Awaits
           </h2>
           <p className="text-neutral-500 text-sm">
-            Sign in to track and manage the books you have borrowed from the library.
+            Please sign in to oversee your active reading shelf and manage the volumes currently in your care.
           </p>
           <Link
             href="/signin?callbackUrl=/my-borrows"
             className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In to Continue
+            Enter Sanctuary
           </Link>
         </div>
       </div>
@@ -147,15 +147,15 @@ const MyBorrowsPage = () => {
         setBorrowedBooks((prev) =>
           prev.filter((book) => book._id !== borrowId),
         );
-        toast.success("Book returned successfully!");
+        toast.success("Volume safely returned to the shelves with gratitude!");
       } else {
         toast.danger(
-          data.error || data.message || "Failed to return the book.",
+          data.error || data.message || "Failed to return the volume to the library.",
         );
       }
     } catch (error) {
       console.error("Return error:", error);
-      toast.danger("Something went wrong while returning the book.");
+      toast.danger("An unforeseen disruption occurred while returning the volume.");
     }
   };
 
@@ -166,14 +166,14 @@ const MyBorrowsPage = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-6">
           <div>
             <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900">
-              My Borrowed Books
+              My Reading Desk
             </h1>
             <p className="text-sm text-neutral-500 mt-1">
-              Manage and track all the books you have currently borrowed.
+              Volumes currently entrusted to your care and companioning your days.
             </p>
           </div>
           <span className="self-start sm:self-auto px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20">
-            {borrowedBooks.length} {borrowedBooks.length === 1 ? "Book" : "Books"}
+            {borrowedBooks.length} {borrowedBooks.length === 1 ? "Active Read" : "Active Reads"}
           </span>
         </div>
 
@@ -184,18 +184,17 @@ const MyBorrowsPage = () => {
               <HiOutlineBookmarkSlash className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-bold text-neutral-800">
-              No books borrowed yet
+              Your Reading Desk is Clear
             </h3>
-            <p className="text-sm text-neutral-500 max-w-sm mx-auto">
-              Explore our library and borrow your favorite books to read them
-              anytime!
+            <p className="text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
+              No volumes are currently borrowed. Explore our grand catalog to invite your next story home!
             </p>
             <div className="pt-2">
               <Link
                 href="/books"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-md shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
               >
-                Browse Books
+                Explore the Catalog
               </Link>
             </div>
           </div>

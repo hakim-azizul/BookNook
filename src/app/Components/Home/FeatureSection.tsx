@@ -7,30 +7,30 @@ const FeatureSection = () => {
   const features = [
     {
       id: 1,
-      title: "Diverse Selection",
+      title: "An Infinite Alcove",
       description:
-        "Explore a rich collection of timeless classics, fiction, science, and philosophy contributed by our reader network.",
+        "Wander through thousands of volumes spanning centuries of human inquiry, from gentle allegories to groundbreaking treatises.",
       image: "/feature_asset/decision.png",
     },
     {
       id: 2,
-      title: "Instant Borrowing",
+      title: "Frictionless Lending",
       description:
-        "Borrow titles effortlessly with one click, manage active loans, and track your personal reading shelf seamlessly.",
+        "Borrow circulating titles with gentle ease, keep quiet track of your active reads, and return them when the final page is turned.",
       image: "/feature_asset/borrow.png",
     },
     {
       id: 3,
-      title: "Community Sharing",
+      title: "The Commonwealth of Letters",
       description:
-        "Give your bookshelf a second life by contributing beloved books to share with fellow passionate readers.",
+        "Give back to the reading commons by bestowing your cherished books upon seeking hands across the community.",
       image: "/feature_asset/publish.png",
     },
     {
       id: 4,
-      title: "Grow Together",
+      title: "A Living Fellowship",
       description:
-        "Connect with book lovers, exchange inspiring stories, and nurture a supportive, lifelong reading culture.",
+        "Connect with fellow literary travelers, exchange profound perspectives, and nurture an enduring reverence for the printed word.",
       image: "/feature_asset/GrowCommunity.png",
     },
   ];

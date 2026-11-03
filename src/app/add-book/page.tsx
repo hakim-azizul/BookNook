@@ -89,18 +89,18 @@ const AddBookPage = () => {
   if (!user) {
     return (
       <div className="min-h-[70vh] bg-neutral-50 flex flex-col justify-center items-center px-4">
-        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full">
-          <h2 className="text-2xl font-bold text-neutral-800 mb-2">
-            Please Sign In
+        <div className="bg-white p-8 rounded-3xl border border-neutral-200 shadow-xl text-center max-w-md w-full space-y-4">
+          <h2 className="text-2xl font-bold text-neutral-800">
+            A Curator&apos;s Hearth Awaits
           </h2>
-          <p className="text-neutral-500 text-sm mb-6">
-            Sign in to contribute and share a book with the library.
+          <p className="text-neutral-500 text-sm">
+            Please sign in to bestow and catalog a volume within the BookNook sanctuary.
           </p>
           <Link
             href="/signin?callbackUrl=/add-book"
             className="inline-block w-full py-3 px-6 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-lg shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
           >
-            Sign In to Continue
+            Enter to Contribute
           </Link>
         </div>
       </div>
@@ -133,16 +133,16 @@ const AddBookPage = () => {
       const afterSubmit = await res.json().catch(() => ({}));
 
       if (res.ok) {
-        toast.success("Book added successfully!");
+        toast.success("Your volume has been cataloged and welcomed into the archives!");
         router.push("/books");
       } else {
         toast.danger(
-          afterSubmit.error || afterSubmit.message || "Failed to add book.",
+          afterSubmit.error || afterSubmit.message || "Failed to catalog volume.",
         );
       }
     } catch (error) {
       console.error("Error adding book:", error);
-      toast.danger("Something went wrong. Please try again.");
+      toast.danger("An unexpected disruption occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -154,10 +154,10 @@ const AddBookPage = () => {
         <Form className="w-full" onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-[#ff5b49] text-2xl font-bold">
-              Add a New Book
+              Bestow a Volume
             </Fieldset.Legend>
             <Description className="text-gray-500 mb-4">
-              Make a contribution to grow our digital library today!
+              Enrich our communal sanctuary. Share timeless prose, keen inquiry, or evocative storytelling.
             </Description>
             <Fieldset.Group className="space-y-4">
               {/* Title & Author */}
@@ -167,13 +167,13 @@ const AddBookPage = () => {
                   name="title"
                   validate={(value) => {
                     if (value.length < 3) {
-                      return "Book Title must be at least 3 characters";
+                      return "Title must be at least 3 characters";
                     }
                     return null;
                   }}
                 >
-                  <Label>Book Title</Label>
-                  <Input placeholder="The Republic" />
+                  <Label>Title of the Work</Label>
+                  <Input placeholder="e.g. The Republic" />
                   <FieldError />
                 </TextField>
                 <TextField
@@ -181,13 +181,13 @@ const AddBookPage = () => {
                   name="author"
                   validate={(value) => {
                     if (value.length < 3) {
-                      return "Author Name must be at least 3 characters";
+                      return "Author name must be at least 3 characters";
                     }
                     return null;
                   }}
                 >
-                  <Label>Author</Label>
-                  <Input placeholder="Plato" />
+                  <Label>Literary Architect / Author</Label>
+                  <Input placeholder="e.g. Plato" />
                   <FieldError />
                 </TextField>
               </div>
@@ -197,9 +197,9 @@ const AddBookPage = () => {
                 <Select
                   className="w-full"
                   name="category"
-                  placeholder="Select Category"
+                  placeholder="Select Literary Realm"
                 >
-                  <Label>Category</Label>
+                  <Label>Literary Realm</Label>
                   <Select.Trigger>
                     <Select.Value />
                     <Select.Indicator />
@@ -207,35 +207,35 @@ const AddBookPage = () => {
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Fiction
+                        Fiction &amp; Literature
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
-                        Non-Fiction
+                        Non-Fiction &amp; Essays
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="philosophy" textValue="Philosophy">
-                        Philosophy
+                        Philosophy &amp; Thought
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="science" textValue="Science & Tech">
-                        Science & Tech
+                        Science &amp; Technology
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="history" textValue="History">
-                        History
+                        History &amp; Chronicle
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Kids
+                        Children &amp; Young Readers
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="Religion" textValue="Religion">
-                        Religion
+                        Theology &amp; Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="Others" textValue="Others">
-                        Others
+                        General &amp; Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                     </ListBox>
@@ -248,7 +248,7 @@ const AddBookPage = () => {
                   defaultValue={1}
                   name="quantity"
                 >
-                  <Label>Quantity</Label>
+                  <Label>Copies to Circulate</Label>
                   <NumberField.Group className="w-full">
                     <NumberField.DecrementButton />
                     <NumberField.Input className="w-full text-center" />
@@ -266,12 +266,12 @@ const AddBookPage = () => {
                     new URL(value);
                     return null;
                   } catch {
-                    return "Please enter a valid image URL";
+                    return "Please enter a valid cover artwork URL";
                   }
                 }}
               >
-                <Label>Book Image URL</Label>
-                <Input placeholder="https://example.com/image.jpg" />
+                <Label>Cover Artwork URL</Label>
+                <Input placeholder="https://example.com/cover.jpg" />
                 <FieldError />
               </TextField>
 
@@ -281,14 +281,14 @@ const AddBookPage = () => {
                 name="description"
                 validate={(value) => {
                   if (value.length < 10) {
-                    return "Description must be at least 10 characters";
+                    return "Synopsis must be at least 10 characters";
                   }
                   return null;
                 }}
               >
-                <Label>Short Description</Label>
-                <TextArea placeholder="Why should anyone read this book?" />
-                <Description>Minimum 10 characters</Description>
+                <Label>Synopsis &amp; Reader&apos;s Invitation</Label>
+                <TextArea placeholder="What makes this volume unforgettable? What will a reader discover within its pages?" />
+                <Description>Minimum 10 characters to capture the essence of the work</Description>
                 <FieldError />
               </TextField>
 
@@ -299,7 +299,7 @@ const AddBookPage = () => {
                   name="contributorName"
                   defaultValue={user?.name || ""}
                 >
-                  <Label>Contributor</Label>
+                  <Label>Curating Reader</Label>
                   <Input />
                   <FieldError />
                 </TextField>
@@ -310,7 +310,7 @@ const AddBookPage = () => {
                   type="email"
                   defaultValue={user?.email || ""}
                 >
-                  <Label>Email</Label>
+                  <Label>Curator Correspondence</Label>
                   <Input />
                   <FieldError />
                 </TextField>
@@ -324,10 +324,10 @@ const AddBookPage = () => {
                 type="submit"
                 isDisabled={loading}
               >
-                {loading ? "Adding Book..." : "Add Book"}
+                {loading ? "Cataloging..." : "Catalog Volume"}
               </Button>
               <Button type="reset" variant="secondary" className="cursor-pointer">
-                Cancel
+                Reset
               </Button>
             </Fieldset.Actions>
           </Fieldset>

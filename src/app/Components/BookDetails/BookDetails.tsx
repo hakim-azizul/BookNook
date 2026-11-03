@@ -41,7 +41,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
             {/* Category Badge */}
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20">
               <HiOutlineTag className="w-3.5 h-3.5" />
-              <span>{book.category || "General"}</span>
+              <span>{book.category || "General Literature"}</span>
             </div>
 
             {/* Title & Author */}
@@ -50,7 +50,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
                 {book.title}
               </h1>
               <p className="text-sm sm:text-base font-medium text-neutral-600 flex items-center gap-2">
-                <span className="text-neutral-400">By</span>
+                <span className="text-neutral-400">Penned by</span>
                 <span className="text-[#ff5b49] font-semibold">
                   {book.author}
                 </span>
@@ -61,10 +61,10 @@ const BookDetails = ({ book }: BookDetailsProps) => {
             <div className="space-y-2 pt-2 border-t border-neutral-100">
               <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
                 <HiOutlineInformationCircle className="w-4 h-4 text-[#ff5b49]" />
-                Description
+                Prologue &amp; Overview
               </h3>
               <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                {book.description || "No description provided for this book."}
+                {book.description || "No synopsis recorded for this volume."}
               </p>
             </div>
 
@@ -72,7 +72,7 @@ const BookDetails = ({ book }: BookDetailsProps) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4 border-y border-neutral-100 text-sm">
               <div className="space-y-1">
                 <span className="text-neutral-400 text-xs block">
-                  Available Copies
+                  Circulating Copies
                 </span>
                 <span className="font-bold text-neutral-900 flex items-center gap-1.5">
                   <HiOutlineBookOpen className="w-4 h-4 text-[#ff5b49]" />
@@ -81,11 +81,11 @@ const BookDetails = ({ book }: BookDetailsProps) => {
               </div>
               <div className="space-y-1">
                 <span className="text-neutral-400 text-xs block">
-                  Contributed by:
+                  Bequeathed to Library by:
                 </span>
                 <span className="font-bold text-neutral-900 flex items-center gap-1.5 truncate">
                   <HiOutlineUser className="w-4 h-4 text-[#ff5b49]" />
-                  {book.contributorName || "Community Member"}
+                  {book.contributorName || "Communal Benefactor"}
                 </span>
               </div>
             </div>

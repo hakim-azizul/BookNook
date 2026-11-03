@@ -10,11 +10,10 @@ export default function MyBooksEmptyState() {
         <HiOutlineBookOpen className="w-8 h-8" />
       </div>
       <h3 className="text-xl font-bold text-neutral-800">
-        No books added yet
+        Your Personal Archives are Quiet
       </h3>
-      <p className="text-sm text-neutral-500 max-w-sm mx-auto">
-        You have not contributed any books to the platform yet. Start sharing
-        your collection with fellow readers!
+      <p className="text-sm text-neutral-500 max-w-sm mx-auto leading-relaxed">
+        You have not yet cataloged any volumes on the communal shelves. Bestow your first book and ignite curiosity in another reader&apos;s journey.
       </p>
       <div className="pt-2">
         <Link
@@ -22,7 +21,7 @@ export default function MyBooksEmptyState() {
           className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] shadow-md shadow-[#ff5b49]/20 hover:opacity-95 transition-all text-sm cursor-pointer"
         >
           <HiPlus className="w-4 h-4" />
-          <span>Add Your First Book</span>
+          <span>Bestow Your First Volume</span>
         </Link>
       </div>
     </div>

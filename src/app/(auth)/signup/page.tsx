@@ -41,9 +41,9 @@ const SignUpPage = () => {
       });
 
       if (signUpError) {
-        toast.danger(signUpError.message || "Signup failed. Please try again.");
+        toast.danger(signUpError.message || "Unable to complete registration. Please try again.");
       } else {
-        toast.success("Account created successfully! Please sign in.");
+        toast.success("Welcome to BookNook! Your reader account has been created. Please sign in.");
         const nextTarget =
           callbackUrl && callbackUrl !== "/"
             ? `/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`
@@ -52,7 +52,7 @@ const SignUpPage = () => {
       }
     } catch (error) {
       console.error("Signup error:", error);
-      toast.danger("Something went wrong during signup.");
+      toast.danger("An unexpected disruption occurred during enrollment.");
     }
   };
 
@@ -63,13 +63,13 @@ const SignUpPage = () => {
         callbackURL: callbackUrl && callbackUrl !== "/" ? callbackUrl : "/",
       });
       if (error) {
-        toast.danger(error.message || "Google signin failed.");
+        toast.danger(error.message || "Google registration was unsuccessful.");
       } else {
-        toast.success("Google signin successful!");
+        toast.success("Welcome to the BookNook fellowship!");
       }
     } catch (error) {
       console.error("Google signin error:", error);
-      toast.danger("Google signin error occurred.");
+      toast.danger("Google registration could not be completed.");
     }
   };
 
@@ -79,10 +79,10 @@ const SignUpPage = () => {
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-rose-500 text-2xl font-bold">
-              Join BookNook
+              Cross the Threshold into BookNook
             </Fieldset.Legend>
             <Description className="text-[#1a1a1a] mb-4">
-              Signup with your credentials, to join the reader community
+              Become part of an enduring fellowship of curious minds, avid readers, and generous curators.
             </Description>
             <Fieldset.Group className="space-y-4">
               <TextField
@@ -90,13 +90,13 @@ const SignUpPage = () => {
                 name="name"
                 validate={(value) => {
                   if (value.length < 3) {
-                    return "Name must be at least 3 characters";
+                    return "Reader name must be at least 3 characters";
                   }
                   return null;
                 }}
               >
-                <Label>Name</Label>
-                <Input placeholder="John Doe" />
+                <Label>Your Chosen Reader Name</Label>
+                <Input placeholder="e.g. Eleanor Vance" />
                 <FieldError />
               </TextField>
 
@@ -108,12 +108,12 @@ const SignUpPage = () => {
                     new URL(value);
                     return null;
                   } catch {
-                    return "Please enter a valid image URL";
+                    return "Please enter a valid portrait image URL";
                   }
                 }}
               >
-                <Label>Profile Image URL</Label>
-                <Input placeholder="https://example.com/avatar.jpg" />
+                <Label>Portrait Image URL</Label>
+                <Input placeholder="https://example.com/portrait.jpg" />
                 <FieldError />
               </TextField>
 
@@ -123,13 +123,13 @@ const SignUpPage = () => {
                 type="email"
                 validate={(value) => {
                   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                    return "Please enter a valid email address";
+                    return "Please enter a valid correspondence address";
                   }
                   return null;
                 }}
               >
-                <Label>Email</Label>
-                <Input placeholder="john@example.com" />
+                <Label>Reader Correspondence (Email)</Label>
+                <Input placeholder="reader@booknook.com" />
                 <FieldError />
               </TextField>
 
@@ -140,19 +140,19 @@ const SignUpPage = () => {
                 type="password"
                 validate={(value) => {
                   if (value.length < 6) {
-                    return "Password must be at least 6 characters";
+                    return "Secret key must be at least 6 characters";
                   }
                   if (!/[A-Z]/.test(value)) {
-                    return "Password must contain at least one uppercase letter";
+                    return "Secret key must contain at least one uppercase letter";
                   }
                   if (!/[0-9]/.test(value)) {
-                    return "Password must contain at least one number";
+                    return "Secret key must contain at least one numeral";
                   }
                   return null;
                 }}
               >
-                <Label>Password</Label>
-                <Input placeholder="Create a strong password" />
+                <Label>Secret Key (Password)</Label>
+                <Input placeholder="Craft a resilient secret key" />
                 <FieldError />
               </TextField>
             </Fieldset.Group>
@@ -160,31 +160,31 @@ const SignUpPage = () => {
             <Fieldset.Actions className="mt-6 flex flex-col gap-3">
               <div className="flex items-center gap-3 w-full">
                 <Button
-                  className="bg-[#1a1a1a] text-white w-full py-2.5 rounded-xl cursor-pointer"
+                  className="bg-[#1a1a1a] text-white w-full py-2.5 rounded-xl cursor-pointer hover:bg-neutral-800 transition-colors"
                   type="submit"
                 >
-                  Create Account
+                  Begin Your Journey
                 </Button>
                 <Button
                   type="reset"
                   variant="secondary"
                   className="w-full py-2.5 rounded-xl cursor-pointer"
                 >
-                  Cancel
+                  Reset
                 </Button>
               </div>
               <Button
                 onPress={handleGoogleSignIn}
-                className="w-full border border-[#a1a1a1] hover:border-[#ff5b49] py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full border border-[#a1a1a1] hover:border-[#ff5b49] py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors"
                 variant="secondary"
               >
                 <SiGoogle className="text-[#ff5b49] w-4 h-4" />
-                Sign up with Google
+                Enroll with Google
               </Button>
             </Fieldset.Actions>
 
             <h4 className="mt-6 text-center text-sm text-neutral-600">
-              Already have an account?{" "}
+              Already have a place at our hearth?{" "}
               <span>
                 <Link
                   className="text-[#ff0018] underline font-medium"
@@ -194,7 +194,7 @@ const SignUpPage = () => {
                       : "/signin"
                   }
                 >
-                  SIGN IN
+                  Enter Sanctuary
                 </Link>
               </span>
             </h4>

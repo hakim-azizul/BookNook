@@ -25,8 +25,8 @@ export default function GlobalLoading() {
             }}
           ></div>
         </div>
-        <p className="text-sm font-medium text-muted-foreground tracking-wider uppercase animate-pulse">
-          Loading BookNook...
+        <p className="text-xs font-semibold text-neutral-500 tracking-widest uppercase animate-pulse">
+          Opening the Archives...
         </p>
       </div>
     </div>

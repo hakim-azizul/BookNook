@@ -1,16 +1,18 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession, signOut } from "@/lib/auth-client";
 import { FaUser, FaRightFromBracket } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
+import { toast } from "@heroui/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
   const profileRef = useRef<HTMLDivElement>(null);
@@ -28,6 +30,20 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleSignOut = async () => {
+    setIsProfileOpen(false);
+    setIsOpen(false);
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Sign out error:", error);
+    }
+    // Instant HeroUI toast notification and redirection to Home
+    toast.success("Successfully signed out. May your literary journey continue!");
+    router.push("/");
+    router.refresh();
+  };
+
   const baseNavLinks = [
     { name: "Home", path: "/" },
     { name: "All Books", path: "/books" },
@@ -39,18 +55,18 @@ const Navbar = () => {
     { name: "My Borrows", path: "/my-borrows" },
   ];
 
-  // Only show Add Book, My Books, and My Borrows if the user is authenticated
+  // Only render Add Book, My Books, and My Borrows if the user is authenticated
   const navLinks = user ? [...baseNavLinks, ...authNavLinks] : baseNavLinks;
 
   return (
     <nav className="bg-white border-b border-neutral-100 sticky top-0 z-50 text-[#121212]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Brand Logo */}
           <div className="shrink-0 flex items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="text-[#ff5b49] text-3xl">
-                <Image src="/BookNook.png" width={35} height={35} alt="BookNook Logo" />
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="text-[#ff5b49] text-3xl group-hover:scale-105 transition-transform">
+                <Image src="/BookNook.png" width={35} height={35} alt="BookNook Sanctuary" />
               </div>
               <span className="text-2xl font-bold text-[#121212] tracking-tight">
                 Book<span className="text-[#ff0018]">Nook</span>
@@ -95,7 +111,7 @@ const Navbar = () => {
                       user.image ||
                       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150"
                     }
-                    alt={user.name || "User"}
+                    alt={user.name || "Reader"}
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 </button>
@@ -118,20 +134,15 @@ const Navbar = () => {
                       className="px-3 py-2 text-xs font-semibold text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-xl transition-colors flex flex-row items-center gap-2"
                     >
                       <FaUser className="w-4 h-4" />
-                      <span>My Profile</span>
+                      <span>My Literary Profile</span>
                     </Link>
 
                     <button
-                      onClick={() => {
-                        setIsProfileOpen(false);
-                        signOut({
-                          callbackURL: "/",
-                        });
-                      }}
+                      onClick={handleSignOut}
                       className="w-full text-left px-3 py-2 text-xs font-bold text-[#ff0018] hover:bg-[#ff0018]/10 rounded-xl transition-colors flex flex-row items-center gap-2 cursor-pointer"
                     >
                       <FaRightFromBracket className="w-4 h-4 text-[#ff0018]" />
-                      <span>Log Out</span>
+                      <span>Depart Sanctuary</span>
                     </button>
                   </div>
                 )}
@@ -148,7 +159,7 @@ const Navbar = () => {
                   href="/signup"
                   className="px-5 py-2.5 rounded-xl font-medium text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] hover:opacity-90 shadow-lg shadow-[#ff5b49]/20 transition-all text-sm"
                 >
-                  Sign Up
+                  Join BookNook
                 </Link>
               </>
             )}
@@ -160,7 +171,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               type="button"
               aria-label="Toggle navigation menu"
-              className="p-2 text-neutral-700 hover:text-[#ff5b49] hover:bg-neutral-100 rounded-xl focus:outline-none transition-colors"
+              className="p-2 text-neutral-700 hover:text-[#ff5b49] hover:bg-neutral-100 rounded-xl focus:outline-none transition-colors cursor-pointer"
             >
               <svg
                 className="h-6 w-6"
@@ -202,7 +213,7 @@ const Navbar = () => {
                   user.image ||
                   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150"
                 }
-                alt={user.name || "User"}
+                alt={user.name || "Reader"}
                 className="w-11 h-11 rounded-full object-cover ring-2 ring-[#ff5b49]/60 shrink-0"
               />
               <div className="min-w-0 flex-1">
@@ -242,7 +253,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className="block py-2.5 px-3 text-base font-medium text-neutral-300 hover:text-[#ff5b49] hover:bg-neutral-900 rounded-xl"
               >
-                My Profile
+                My Literary Profile
               </Link>
             )}
           </div>
@@ -251,16 +262,11 @@ const Navbar = () => {
           <div className="pt-3 border-t border-neutral-800">
             {user ? (
               <button
-                onClick={() => {
-                  setIsOpen(false);
-                  signOut({
-                    callbackURL: "/",
-                  });
-                }}
+                onClick={handleSignOut}
                 className="w-full text-left py-2.5 px-3 text-base font-semibold text-[#ff0018] bg-[#ff0018]/10 hover:bg-[#ff0018]/20 rounded-xl transition-colors flex flex-row items-center gap-2 cursor-pointer"
               >
                 <FiLogOut className="w-4 h-4 text-[#ff0018]" />
-                <span>Logout</span>
+                <span>Depart Sanctuary</span>
               </button>
             ) : (
               <div className="flex flex-col gap-2">
@@ -276,7 +282,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className="w-full text-center py-2.5 rounded-xl font-medium text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018]"
                 >
-                  Sign Up
+                  Join BookNook
                 </Link>
               </div>
             )}

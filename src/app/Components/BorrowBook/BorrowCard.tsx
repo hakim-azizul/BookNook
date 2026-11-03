@@ -59,19 +59,19 @@ const BorrowCard = ({
 
           <div className="space-y-1.5 min-w-0 flex-1">
             <span className="inline-block px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-[#ff5b49]/10 text-[#ff5b49] border border-[#ff5b49]/20">
-              Borrowed
+              Currently Reading
             </span>
             <h3 className="font-extrabold text-neutral-900 text-base sm:text-lg truncate">
               {title}
             </h3>
             <p className="text-xs sm:text-sm text-neutral-500 truncate">
-              By <span className="text-[#ff5b49] font-medium">{author}</span>
+              Penned by <span className="text-[#ff5b49] font-medium">{author}</span>
             </p>
 
             {/* Borrow Date */}
             {borrowDate && (
               <p className="text-[11px] sm:text-xs text-neutral-400 font-medium pt-0.5">
-                Borrowed on:{" "}
+                Entrusted on:{" "}
                 <span className="text-neutral-700">
                   {new Date(borrowDate).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -92,7 +92,7 @@ const BorrowCard = ({
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-2xl text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors cursor-pointer"
           >
             <HiOutlineArrowUturnLeft className="w-4 h-4" />
-            <span>Return Book</span>
+            <span>Return Volume</span>
           </button>
         </div>
       </div>
@@ -109,16 +109,16 @@ const BorrowCard = ({
                   <HiOutlineExclamationTriangle className="w-6 h-6" />
                 </div>
                 <Modal.Heading className="text-xl font-bold text-neutral-900">
-                  Return this book?
+                  Conclude This Reading Chapter?
                 </Modal.Heading>
               </Modal.Header>
 
-              <Modal.Body className="text-center text-sm text-neutral-500 px-4 py-2">
-                Are you sure you want to return{" "}
+              <Modal.Body className="text-center text-sm text-neutral-500 px-4 py-2 leading-relaxed">
+                Have you turned the final page? Returning{" "}
                 <span className="font-semibold text-neutral-800">
                   &ldquo;{title}&rdquo;
-                </span>
-                ? Once returned, it will be removed from your borrowed list.
+                </span>{" "}
+                allows the next awaiting bibliophile to discover its wonder.
               </Modal.Body>
 
               <Modal.Footer className="flex gap-3 pt-4">
@@ -127,14 +127,14 @@ const BorrowCard = ({
                   className="w-full rounded-xl font-semibold cursor-pointer"
                   onClick={() => setIsOpen(false)}
                 >
-                  Cancel
+                  Continue Reading
                 </Button>
                 <Button
                   className="w-full rounded-xl font-semibold bg-red-600 text-white hover:bg-red-700 cursor-pointer disabled:opacity-50"
                   isDisabled={loading}
                   onClick={handleConfirmReturn}
                 >
-                  {loading ? "Returning..." : "Confirm Return"}
+                  {loading ? "Returning..." : "Return to Shelves"}
                 </Button>
               </Modal.Footer>
             </Modal.Dialog>

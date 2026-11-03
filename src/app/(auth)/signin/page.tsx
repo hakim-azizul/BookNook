@@ -69,8 +69,8 @@ const SignInPage = () => {
           ) {
             return referrerUrl.pathname + referrerUrl.search;
           }
-        } catch (e) {
-          console.error(e);
+        } catch {
+          // Ignore invalid referrer URLs
         }
       }
     }
@@ -91,17 +91,17 @@ const SignInPage = () => {
       if (signInError) {
         toast.danger(
           signInError.message ||
-            "Sign in failed. Please check your credentials.",
+            "Unable to recognize your credentials. Please review and try again.",
         );
       } else {
-        toast.success("Sign in successful!");
+        toast.success("Welcome back to your reading sanctuary!");
         const redirectTo = getRedirectPath();
         router.push(redirectTo);
         router.refresh();
       }
     } catch (error) {
       console.error("Signin error:", error);
-      toast.danger("Something went wrong. Please try again.");
+      toast.danger("An unexpected disruption occurred. Please try again.");
     }
   };
 
@@ -113,13 +113,13 @@ const SignInPage = () => {
         callbackURL: redirectTo,
       });
       if (error) {
-        toast.danger(error.message || "Google signin failed.");
+        toast.danger(error.message || "Google authentication was unsuccessful.");
       } else {
-        toast.success("Google signin successful!");
+        toast.success("Welcome back to your reading sanctuary!");
       }
     } catch (error) {
       console.error("Google signin error:", error);
-      toast.danger("Google signin error occurred.");
+      toast.danger("Google authentication could not be completed.");
     }
   };
 
@@ -131,10 +131,10 @@ const SignInPage = () => {
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-rose-500 text-2xl font-bold">
-              Welcome Back
+              Welcome Back, Fellow Reader
             </Fieldset.Legend>
             <Description className="text-[#1a1a1a] mb-4">
-              Read continuously, Share insights, Grow community.
+              Re-enter the quiet haven of BookNook. Stories and companions await your return.
             </Description>
             <Fieldset.Group className="space-y-4">
               <TextField
@@ -148,8 +148,8 @@ const SignInPage = () => {
                   return null;
                 }}
               >
-                <Label>Email</Label>
-                <Input placeholder="john@example.com" />
+                <Label>Reader&apos;s Correspondence (Email)</Label>
+                <Input placeholder="reader@booknook.com" />
                 <FieldError />
               </TextField>
               <TextField
@@ -159,23 +159,23 @@ const SignInPage = () => {
                 type="password"
                 validate={(value) => {
                   if (value.length < 6) {
-                    return "Password must be at least 6 characters";
+                    return "Passkey must be at least 6 characters";
                   }
                   if (!/[A-Z]/.test(value)) {
-                    return "Password must contain at least one uppercase letter";
+                    return "Passkey must contain at least one uppercase letter";
                   }
                   if (!/[0-9]/.test(value)) {
-                    return "Password must contain at least one number";
+                    return "Passkey must contain at least one numeral";
                   }
                   return null;
                 }}
               >
-                <Label>Password</Label>
-                <Input placeholder="Enter your password" />
+                <Label>Secret Key (Password)</Label>
+                <Input placeholder="Enter your secret key" />
                 <Description>
-                  If you forgot your password.{" "}
+                  Misplaced your secret key?{" "}
                   <span className="text-[#ff5b49] underline cursor-pointer">
-                    Click Here
+                    Request recovery
                   </span>
                 </Description>
                 <FieldError />
@@ -185,22 +185,22 @@ const SignInPage = () => {
             <Fieldset.Actions className="mt-6 flex flex-col gap-3">
               <div className="flex items-center gap-3 w-full">
                 <Button
-                  className="bg-[#1a1a1a] text-white w-full py-2.5 rounded-xl cursor-pointer"
+                  className="bg-[#1a1a1a] text-white w-full py-2.5 rounded-xl cursor-pointer hover:bg-neutral-800 transition-colors"
                   type="submit"
                 >
-                  Sign In
+                  Enter Library
                 </Button>
                 <Button
                   type="reset"
                   variant="secondary"
                   className="w-full py-2.5 rounded-xl cursor-pointer"
                 >
-                  Cancel
+                  Reset
                 </Button>
               </div>
               <Button
                 onPress={handleGoogleSignIn}
-                className="w-full border border-[#a1a1a1] hover:border-[#ff5b49] py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full border border-[#a1a1a1] hover:border-[#ff5b49] py-2.5 rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors"
                 variant="secondary"
               >
                 <SiGoogle className="text-[#ff5b49] w-4 h-4" />
@@ -209,7 +209,7 @@ const SignInPage = () => {
             </Fieldset.Actions>
 
             <h4 className="mt-6 text-center text-sm text-neutral-600">
-              New to BookNook?{" "}
+              First time at the library hearth?{" "}
               <span>
                 <Link
                   className="text-[#ff0018] underline font-medium"
@@ -219,7 +219,7 @@ const SignInPage = () => {
                       : "/signup"
                   }
                 >
-                  JOIN US
+                  Join the Circle
                 </Link>
               </span>
             </h4>

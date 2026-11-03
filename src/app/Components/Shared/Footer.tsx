@@ -15,12 +15,12 @@ const Footer = () => {
   return (
     <footer className="bg-[#1a1a1a] text-gray-300 pt-12 sm:pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Flex Section: Logo/Short line/Socials vs Contact Info */}
+        {/* Main Flex Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-10 pb-10 sm:pb-12 border-b border-gray-800">
           {/* Logo, Description & Socials */}
           <div className="space-y-4 max-w-md">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="text-[#ff0018] text-3xl">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="text-[#ff0018] text-3xl group-hover:scale-105 transition-transform">
                 <Image
                   src="/BookNook_light.png"
                   width={30}
@@ -33,7 +33,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Your digital space to borrow, share, and discover amazing books. Connect with fellow book lovers. Read continuously, share insights, and grow community all in one place.
+              Your digital sanctuary to borrow, bestow, and discover profound literature. Connect with fellow bibliophiles, read continuously, exchange timeless insights, and nurture our reading commons together.
             </p>
 
             {/* Social Links */}
@@ -69,30 +69,32 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact & Hours Info */}
           <div>
             <h3 className="text-white font-semibold text-lg mb-4">
-              Contact Info
+              Library Hearth &amp; Inquiries
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2 text-[#ff0018] font-bold text-lg sm:text-xl">
                 <FaPhoneAlt className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                 <span className="break-all sm:break-normal">+880 1551 2376 4879</span>
               </div>
-              <p className="text-gray-400 text-xs">
-                Monday – Friday: 9:00-20:00
+              <p className="text-gray-400 text-xs leading-relaxed">
+                Reading Alcove Hours:
+                <br />
+                Monday – Friday: 9:00 – 20:00
                 <br />
                 Saturday: 11:00 – 15:00
               </p>
-              <p className="text-white font-medium pt-1">contact@booknook.com</p>
+              <p className="text-white font-medium pt-1">curator@booknook.com</p>
             </div>
           </div>
         </div>
 
         {/* Copyright Line */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>&copy; 2026 BookNook. Created by Azizul Hakim</p>
-          <p>All rights reserved.</p>
+          <p>&copy; 2026 BookNook. Crafted for readers and keepers of books.</p>
+          <p>All literary rights preserved across the commons.</p>
         </div>
       </div>
     </footer>

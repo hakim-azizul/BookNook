@@ -20,45 +20,45 @@ const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      badge: "Community Favorite",
+      badge: "Curator's Anthology",
       badgeIcon: HiSparkles,
-      title: "Discover & Borrow Captivating Reads",
+      title: "Where Every Page Whispers a New World",
       description:
-        "Explore a rich catalog of timeless literature, fiction, and philosophy contributed by book lovers worldwide. Borrow titles instantly with zero friction.",
-      rating: "4.9 Library Rating",
-      highlights: ["Free Member Access", "Instant Borrowing", "No Hidden Fees"],
-      primaryCta: { text: "Explore All Books", href: "/books" },
-      secondaryCta: { text: "Join Community", href: "/signup" },
+        "Wander through a living sanctuary of timeless classics, evocative prose, and profound philosophy. Borrow circulating volumes with gentle ease and lose yourself in unforgettable stories.",
+      rating: "4.9 Guild Rating",
+      highlights: ["Frictionless Lending", "Zero Hidden Terms", "Community-Maintained"],
+      primaryCta: { text: "Peruse the Shelves", href: "/books" },
+      secondaryCta: { text: "Join the Fellowship", href: "/signup" },
       image:
         "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
       bgClass: "bg-[#fff7f5]",
     },
     {
       id: 2,
-      badge: "Share Your Bookshelf",
+      badge: "The Communal Hearth",
       badgeIcon: FaHandHoldingHeart,
-      title: "Share Your Books, Inspire Other Minds",
+      title: "Bestow Your Bookshelf, Kindle Another Mind",
       description:
-        "Give your favorite books a second life. Contribute your personal collection to the community shelf and help fellow readers discover unforgettable stories.",
+        "A cherished volume kept in solitude is a story paused in silence. Bequeath your favorites to our communal shelves and watch knowledge and wonder illuminate fellow seekers.",
       rating: "5.0 Contributor Trust",
-      highlights: ["Fast Book Listing", "Community Impact", "Eco-Friendly Exchange"],
-      primaryCta: { text: "Contribute a Book", href: "/add-book" },
-      secondaryCta: { text: "Browse Collection", href: "/books" },
+      highlights: ["Swift Cataloging", "Enduring Impact", "Eco-Conscious Exchange"],
+      primaryCta: { text: "Bestow a Volume", href: "/add-book" },
+      secondaryCta: { text: "Explore the Commons", href: "/books" },
       image:
         "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop",
       bgClass: "bg-[#f8f6f0]",
     },
     {
       id: 3,
-      badge: "Fresh Curations",
+      badge: "The Living Canon",
       badgeIcon: FaBookOpen,
-      title: "Curated Knowledge for Curious Minds",
+      title: "Profound Ideas Curated for Restless Minds",
       description:
-        "From transformative science and technology to thought-provoking classics, expand your worldview with books carefully maintained by our community.",
-      rating: "4.8 Reader Choice",
-      highlights: ["Curated Categories", "Diverse Voices", "Daily New Arrivals"],
-      primaryCta: { text: "Browse Catalog", href: "/books" },
-      secondaryCta: { text: "My Reading Shelf", href: "/my-borrows" },
+        "From transformative science and enduring philosophical inquiries to delicate literary fiction, nurture your curiosity with works thoughtfully shared by our reader circle.",
+      rating: "4.8 Readers' Choice",
+      highlights: ["Curated Inquiries", "Diverse Voices", "Daily New Arrivals"],
+      primaryCta: { text: "Browse Full Catalog", href: "/books" },
+      secondaryCta: { text: "My Reading Desk", href: "/my-borrows" },
       image:
         "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800&auto=format&fit=crop",
       bgClass: "bg-[#f2f6f8]",
@@ -118,7 +118,7 @@ const HeroSlider = () => {
                         key={idx}
                         className="text-xs font-medium px-3 py-1 bg-white/80 backdrop-blur-xs text-neutral-700 rounded-lg border border-neutral-200/60 shadow-2xs"
                       >
-                        ✓ {item}
+                        ✦ {item}
                       </span>
                     ))}
                   </div>

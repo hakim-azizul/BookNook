@@ -36,7 +36,7 @@ const BorrowBtn = ({
 
   const handleOpenModal = () => {
     if (!session?.user) {
-      toast.danger("Please sign in to borrow this book!");
+      toast.danger("Please sign in to borrow this volume!");
       router.push(`/signin?callbackUrl=/books/${bookId}`);
       return;
     }
@@ -69,15 +69,15 @@ const BorrowBtn = ({
 
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        toast.success("Book borrowed successfully!");
+        toast.success("A new chapter begins. Enjoy your journey with this volume!");
         setIsOpen(false);
         router.refresh();
       } else {
-        toast.danger(data.error || data.message || "Failed to borrow book.");
+        toast.danger(data.error || data.message || "Unable to reserve this volume right now.");
       }
     } catch (error) {
       console.error("Error borrowing book:", error);
-      toast.danger("Something went wrong. Please try again.");
+      toast.danger("An unforeseen disruption occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -97,7 +97,7 @@ const BorrowBtn = ({
         }`}
       >
         <HiOutlineBookmark className="w-5 h-5" />
-        <span>{isOutOfStock ? "Out of Stock" : "Borrow This Book"}</span>
+        <span>{isOutOfStock ? "Currently on Loan" : "Borrow This Volume"}</span>
       </button>
 
       {/* HeroUI Blur Backdrop Confirmation Modal with Read-Only Details */}
@@ -119,21 +119,20 @@ const BorrowBtn = ({
                   <HiOutlineExclamationTriangle className="w-6 h-6" />
                 </div>
                 <Modal.Heading className="text-xl font-bold text-neutral-900">
-                  Confirm Book Borrow
+                  Reserve This Volume
                 </Modal.Heading>
               </Modal.Header>
 
               <Modal.Body className="space-y-3 px-4 py-3 text-sm">
                 <p className="text-neutral-500 text-center text-xs">
-                  Please review your details before confirming the borrow
-                  request:
+                  Review your reading pact before the volume is entrusted to your care:
                 </p>
 
                 {/* Read-only Information Fields */}
                 <div className="space-y-2 bg-neutral-50 p-3.5 rounded-2xl border border-neutral-200/70">
                   <div>
                     <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
-                      Book Title
+                      Title of the Work
                     </label>
                     <p className="font-bold text-neutral-900 text-sm line-clamp-1">
                       {title}
@@ -142,16 +141,16 @@ const BorrowBtn = ({
 
                   <div>
                     <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
-                      Borrower Name
+                      Borrowing Reader
                     </label>
                     <p className="font-semibold text-neutral-800 text-sm">
-                      {session?.user?.name || "N/A"}
+                      {session?.user?.name || "Bibliophile"}
                     </p>
                   </div>
 
                   <div>
                     <label className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
-                      Borrower Email
+                      Reader Correspondence
                     </label>
                     <p className="font-medium text-neutral-700 text-xs">
                       {session?.user?.email || "N/A"}
@@ -166,7 +165,7 @@ const BorrowBtn = ({
                   className="w-full rounded-xl font-semibold cursor-pointer"
                   onClick={() => setIsOpen(false)}
                 >
-                  Cancel
+                  Remain Browsing
                 </Button>
                 <Button
                   className="w-full rounded-xl font-semibold text-white shadow-md cursor-pointer"
@@ -174,7 +173,7 @@ const BorrowBtn = ({
                   isDisabled={loading}
                   onClick={handleBorrowBook}
                 >
-                  {loading ? "Processing..." : "Confirm & Borrow"}
+                  {loading ? "Entrusting..." : "Confirm & Borrow"}
                 </Button>
               </Modal.Footer>
             </Modal.Dialog>
