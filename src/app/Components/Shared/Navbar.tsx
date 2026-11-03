@@ -69,7 +69,7 @@ const Navbar = () => {
               <div className="text-[#ff5b49] text-3xl group-hover:scale-105 transition-transform">
                 <Image src="/BookNook.png" width={35} height={35} alt="BookNook Sanctuary" />
               </div>
-              <span className="text-2xl font-bold text-[#121212] tracking-tight">
+              <span className="text-2xl font-bold text-[#121212] dark:text-neutral-100 tracking-tight">
                 Book<span className="text-[#ff0018]">Nook</span>
               </span>
             </Link>
