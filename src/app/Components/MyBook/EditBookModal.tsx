@@ -112,7 +112,7 @@ export default function EditBookModal({
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Literature
+                        Fiction
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
@@ -132,14 +132,14 @@ export default function EditBookModal({
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Young Readers
+                        kids
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="religion" textValue="Religion">
+                      <ListBox.Item id="spirituality" textValue="Spirituality">
                         Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="others" textValue="Others">
+                      <ListBox.Item id="rare" textValue="Rare">
                         Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>

@@ -179,7 +179,7 @@ const AddBookPage = () => {
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Literature
+                        Fiction
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
@@ -199,14 +199,14 @@ const AddBookPage = () => {
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Young Readers
+                        kids
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Religion" textValue="Religion">
+                      <ListBox.Item id="spirituality" textValue="Spirituality">
                         Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Others" textValue="Others">
+                      <ListBox.Item id="rare" textValue="Rare">
                         Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
