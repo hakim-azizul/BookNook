@@ -112,7 +112,7 @@ export default function EditBookModal({
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Fiction / Literature
+                        Literature
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
