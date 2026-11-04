@@ -78,6 +78,8 @@ BETTER_AUTH_URL=http://localhost:3000
 ```bash
 git clone https://github.com/hakim-azizul/BookNook-Server.git
 cd BookNook-Server
+git clone https://github.com/hakim-azizul/BookNook.git
+cd BookNook
 ```
 
 ### 2. Setup Server
@@ -99,4 +101,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 ## 🛡️ License
 
-This project is licensed under the **MIT License**. Free for personal and educational use.
+This project is made for personal and educational use.
