@@ -70,7 +70,7 @@ const NewArraivals = async () => {
 
         {/* Books Grid */}
         {Array.isArray(newBooks) && newBooks.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
             {newBooks.map((newBook: iBook, index: number) => {
               let visibilityClass = "";
               if (index >= 6 && index < 9) {
