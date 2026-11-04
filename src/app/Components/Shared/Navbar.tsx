@@ -39,26 +39,24 @@ const Navbar = () => {
     } catch (error) {
       console.error("Sign out error:", error);
     }
-    // Instant HeroUI toast notification and redirection to Home
     toast.success("Successfully signed out. May your literary journey continue!");
     router.push("/");
     router.refresh();
   };
 
-  const baseNavLinks = [
+  const publicRoutes = [
     { name: "Home", path: "/" },
     { name: "All Books", path: "/books" },
   ];
 
-  const authNavLinks = [
+  const privateRoutes = [
     { name: "Add Book", path: "/add-book" },
     { name: "My Books", path: "/my-books" },
     { name: "My Borrows", path: "/my-borrows" },
   ];
 
-  // Only render Add Book, My Books, and My Borrows if the user is authenticated
-  const navLinks = user ? [...baseNavLinks, ...authNavLinks] : baseNavLinks;
 
+  const navLinks = user ? [...publicRoutes, ...privateRoutes] : publicRoutes;
   return (
     <nav className="backdrop-blur-md bg-white/80 dark:bg-stone-900/80 border-b border-neutral-200/80 dark:border-neutral-800/80 sticky top-0 z-50 text-[#121212] dark:text-neutral-100 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +65,7 @@ const Navbar = () => {
           <div className="shrink-0 flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="text-[#ff5b49] text-3xl group-hover:scale-105 transition-transform">
-                <Image src="/BookNook.png" width={35} height={35} alt="BookNook Sanctuary" />
+                <Image src={"/BookNook.png"} width={35} height={35} alt="BookNook Sanctuary" />
               </div>
               <span className="text-2xl font-bold text-[#121212] dark:text-neutral-100 tracking-tight">
                 Book<span className="text-[#ff0018]">Nook</span>
@@ -174,7 +172,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               type="button"
               aria-label="Toggle navigation menu"
-              className="p-2 text-neutral-700 dark:text-neutral-200 hover:text-[#ff5b49] hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-xl focus:outline-none transition-colors cursor-pointer"
+              className="p-2 text-neutral-700 dark:text-neutral-200 hover:text-[#ff5b49] hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full focus:outline-none transition-colors cursor-pointer"
             >
               <svg
                 className="h-6 w-6"

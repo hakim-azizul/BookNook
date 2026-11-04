@@ -3,7 +3,7 @@ import iBook from "@/types/bookType";
 import BookCard from "../Components/Shared/BookCard";
 
 export const metadata: Metadata = {
-  title: "All Books | The Grand Library Catalog",
+  title: "The Grand Library",
   description:
     "Wander through our complete communal catalog of books spanning fiction, philosophy, science, and history. Discover your next companion to borrow.",
 };
@@ -42,10 +42,10 @@ const AllBooksPage = async () => {
             Communal Sanctuary
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">
-            The Grand{" "}
+            The {" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#ff5b49] to-[#ff0018]">
-              Library Catalog
-            </span>
+              Grand  
+            </span> {" "}Library
           </h1>
 
           <p className="text-neutral-500 dark:text-neutral-400 max-w-xl text-sm sm:text-base leading-relaxed">

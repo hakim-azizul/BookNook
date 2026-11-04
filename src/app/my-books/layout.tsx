@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Books | Contributed Books Management",
+  title: "My Archives | Contributed Books Management",
   description:
     "View, manage, edit, and track all the books you have contributed to the BookNook library collection.",
 };

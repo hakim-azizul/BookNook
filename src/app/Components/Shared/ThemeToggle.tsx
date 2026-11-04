@@ -29,7 +29,7 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className={`relative p-2.5 rounded-xl border transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#ff5b49]/40 ${
+      className={`relative p-2.5 rounded-full border transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#ff5b49]/40 ${
         isDark
           ? "bg-neutral-900/90 border-neutral-700/80 text-amber-400 hover:text-amber-300 hover:bg-neutral-800 hover:border-amber-500/40 shadow-sm"
           : "bg-white/90 border-neutral-200/90 text-neutral-700 hover:text-[#ff5b49] hover:bg-neutral-100 hover:border-neutral-300 shadow-xs"

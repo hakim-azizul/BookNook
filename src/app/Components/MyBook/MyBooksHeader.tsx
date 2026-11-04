@@ -29,7 +29,7 @@ export default function MyBooksHeader({ count }: MyBooksHeaderProps) {
           className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] rounded-xl shadow-sm shadow-[#ff5b49]/25 hover:opacity-95 transition-all cursor-pointer"
         >
           <HiPlus className="w-3.5 h-3.5" />
-          <span>Bestow Volume</span>
+          <span>Contribute More</span>
         </Link>
       </div>
     </div>

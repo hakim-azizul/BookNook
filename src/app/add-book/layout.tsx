@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Add Book | Share with the Community",
+  title: "Share with Community",
   description:
     "Contribute a new book to the BookNook community library."
 };

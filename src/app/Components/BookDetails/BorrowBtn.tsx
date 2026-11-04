@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useSession } from "@/lib/auth-client";
 import {
   HiOutlineBookmark,
-  HiOutlineExclamationTriangle,
 } from "react-icons/hi2";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 import { Modal, Button, toast } from "@heroui/react";
@@ -116,7 +115,7 @@ const BorrowBtn = ({
                     borderColor: "rgba(255, 0, 24, 0.2)",
                   }}
                 >
-                  <HiOutlineExclamationTriangle className="w-6 h-6" />
+                  <HiOutlineBookmark className="w-5 h-5" />
                 </div>
                 <Modal.Heading className="text-xl font-bold text-neutral-900 dark:text-white">
                   Reserve This Volume

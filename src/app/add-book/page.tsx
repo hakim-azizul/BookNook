@@ -122,7 +122,7 @@ const AddBookPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 bg-surface transition-colors duration-200">
-      <Surface className="w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#f4f6f0] dark:bg-[#18181b] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
+      <Surface className="w-full max-w-xl p-6 sm:p-8 rounded-3xl bg-[#f4f6f0] dark:bg-[#0f0007] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
         <Form className="w-full" onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-[#ff5b49] text-2xl font-bold">
@@ -179,15 +179,15 @@ const AddBookPage = () => {
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Fiction &amp; Literature
+                        Literature
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
-                        Non-Fiction &amp; Essays
+                        Non-Fiction
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="philosophy" textValue="Philosophy">
-                        Philosophy &amp; Thought
+                        Philosophy / Thought
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="science" textValue="Science & Tech">
@@ -195,19 +195,19 @@ const AddBookPage = () => {
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="history" textValue="History">
-                        History &amp; Chronicle
+                        History / Chronicle
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Children &amp; Young Readers
+                        Young Readers
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="Religion" textValue="Religion">
-                        Theology &amp; Spirituality
+                        Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="Others" textValue="Others">
-                        General &amp; Rare Works
+                        Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                     </ListBox>
@@ -271,7 +271,7 @@ const AddBookPage = () => {
                   name="contributorName"
                   defaultValue={user?.name || ""}
                 >
-                  <Label>Curating Reader</Label>
+                  <Label>Honourable Contributor</Label>
                   <Input />
                   <FieldError />
                 </TextField>
@@ -282,7 +282,7 @@ const AddBookPage = () => {
                   type="email"
                   defaultValue={user?.email || ""}
                 >
-                  <Label>Curator Correspondence</Label>
+                  <Label>Contributor Email</Label>
                   <Input />
                   <FieldError />
                 </TextField>
@@ -296,7 +296,7 @@ const AddBookPage = () => {
                 type="submit"
                 isDisabled={loading}
               >
-                {loading ? "Cataloging..." : "Catalog Volume"}
+                {loading ? "Contributing..." : "Make Contribution"}
               </Button>
               <Button type="reset" variant="secondary" className="cursor-pointer">
                 Reset

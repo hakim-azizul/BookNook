@@ -39,16 +39,18 @@ const NewArraivals = async () => {
 
             {/* Main Title */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1a1a1a] dark:text-white">
-              Recently Welcomed to Our{" "}
+              Recently{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#ff5b49] to-[#ff0018]">
-                Shelves
-              </span>
+                Welcomed
+              </span>{" "}
+              to the Shelfs
             </h2>
 
             {/* Subtitle */}
             <p className="text-neutral-600 dark:text-neutral-400 max-w-xl text-sm sm:text-base leading-relaxed">
-              Newly cataloged volumes and treasured manuscripts generously gifted by
-              fellow bibliophiles, ready to begin their next chapter with you.
+              Newly cataloged volumes and treasured manuscripts generously
+              gifted by fellow bibliophiles, ready to begin their next chapter
+              with you.
             </p>
           </div>
 
@@ -90,7 +92,8 @@ const NewArraivals = async () => {
         ) : (
           <div className="text-center py-16 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm">
             <p className="text-neutral-500 dark:text-neutral-400 text-base sm:text-lg">
-              The archives are quietly settling. No recent arrivals this hour—explore our timeless collection above!
+              The archives are quietly settling. No recent arrivals this
+              hour—explore our timeless collection above!
             </p>
           </div>
         )}

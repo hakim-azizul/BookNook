@@ -61,7 +61,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white dark:bg-[#0f0f10] text-[#121212] dark:text-neutral-100 transition-colors duration-200">
         <ThemeProvider>
-          {/* Global Toast Provider */}
           <ToastProvider placement="top end" />
           <Navbar />
           <main className="flex-1">{children}</main>

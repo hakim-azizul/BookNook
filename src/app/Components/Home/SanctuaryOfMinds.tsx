@@ -7,7 +7,6 @@ import { toast } from "@heroui/react";
 import {
   HiOutlineSparkles,
   HiOutlineBookOpen,
-  HiOutlineCommandLine,
   HiOutlineArrowPath,
   HiOutlineClipboardDocumentCheck,
   HiCheck,
@@ -243,7 +242,7 @@ export default function SanctuaryOfMinds() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1a1a1a] dark:text-white tracking-tight leading-tight">
-            The Sanctuary of Minds:{" "}
+            The Sanctuary of Minds:<br/>
             <span className="bg-linear-to-r from-amber-500 via-rose-500 to-rose-600 bg-clip-text text-transparent">
               Code &amp; Literature
             </span>
@@ -259,7 +258,7 @@ export default function SanctuaryOfMinds() {
         {/* Main Grid: Dual-Wisdom Vault + Vibe & Reading Estimator */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Component A: Dual-Wisdom Vault (7 Cols on desktop) */}
-          <div className="lg:col-span-7 flex flex-col justify-between p-7 sm:p-9 md:p-10 rounded-[2rem] backdrop-blur-xl bg-white/80 dark:bg-[#18181b]/80 border border-amber-500/20 dark:border-amber-500/30 shadow-2xl shadow-stone-900/5 ring-1 ring-amber-500/10 dark:ring-amber-500/20 transition-all relative overflow-hidden group">
+          <div className="lg:col-span-7 flex flex-col justify-between p-7 sm:p-9 md:p-10 rounded-[2rem] backdrop-blur-xl bg-white/80 dark:bg-[#18181b]/80 border border-[#ff5b49] shadow-2xl shadow-stone-900/5 ring-1 ring-amber-500/10 dark:ring-amber-500/20 transition-all relative overflow-hidden group">
             <div className="space-y-6 relative z-10">
               {/* Category Toggle Tabs */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-500/20 dark:border-amber-500/30 pb-5">
@@ -282,11 +281,11 @@ export default function SanctuaryOfMinds() {
                     onClick={() => handleTabChange("code")}
                     className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all duration-200 cursor-pointer ${
                       activeTab === "code"
-                        ? "bg-white dark:bg-neutral-900 text-[#b45309] dark:text-amber-400 shadow-md shadow-neutral-300/40 dark:shadow-black/50 scale-102"
+                        ? "bg-white dark:bg-neutral-900 text-[#ff5b49] dark:text-[#ff0018] shadow-md shadow-neutral-300/40 dark:shadow-black/50 scale-102"
                         : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:scale-[1.02]"
                     }`}
                   >
-                    <HiOutlineCommandLine className="w-4 h-4" />
+                    {"</>"}
                     <span>Developer&apos;s Mind</span>
                   </button>
                 </div>
@@ -297,9 +296,9 @@ export default function SanctuaryOfMinds() {
                 </span>
               </div>
 
-              {/* Quote Display Area with authentic Serif typography & deep golden manuscript styling */}
+              {/* Quote Display Area */}
               <div
-                className={`min-h-[170px] sm:min-h-[160px] flex flex-col justify-center transition-all duration-300 ease-out ${
+                className={`min-h-42.5 sm:min-h-40 flex flex-col justify-center transition-all duration-300 ease-out ${
                   isFading
                     ? "opacity-0 translate-y-3 scale-[0.98]"
                     : "opacity-100 translate-y-0 scale-100"
@@ -325,12 +324,12 @@ export default function SanctuaryOfMinds() {
               </div>
             </div>
 
-            {/* Action Buttons for Wisdom Vault with glowing micro-interactions */}
+            {/* Action Buttons for Wisdom Vault */}
             <div className="pt-6 mt-6 border-t border-amber-500/20 dark:border-amber-500/30 flex flex-wrap items-center justify-between gap-3 relative z-10">
               <button
                 type="button"
                 onClick={handleShuffleQuote}
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-white bg-linear-to-r from-amber-500 via-[#ff5b49] to-[#ff0018] shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-[#ff5b49]/35 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] rounded-2xl shadow-lg shadow-[#ff5b49]/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <HiOutlineArrowPath
                   className={`w-4 h-4 transition-transform duration-300 ${
@@ -402,11 +401,11 @@ export default function SanctuaryOfMinds() {
                 </p>
               </div>
 
-              {/* Reading Time Estimator Slider with polished track */}
+              {/* Reading Time Estimator Slider */}
               <div className="space-y-3 pt-4 border-t border-neutral-200/60 dark:border-neutral-800">
                 <div className="flex justify-between items-center text-xs font-semibold text-neutral-700 dark:text-neutral-300">
                   <span>Volume Length / Planned Pages:</span>
-                  <span className="font-bold text-neutral-900 dark:text-white bg-white dark:bg-neutral-900 px-3 py-1 rounded-xl border border-amber-500/20 dark:border-amber-500/30 shadow-xs scale-102 transition-transform">
+                  <span className="font-bold text-neutral-900 dark:text-white bg-white dark:bg-neutral-900 px-3 py-1 rounded-xl border border-[#ff0018]/20 dark:border-[#ff0018]/30 shadow-xs scale-102 transition-transform">
                     {pagesCount} pages
                   </span>
                 </div>
@@ -427,10 +426,10 @@ export default function SanctuaryOfMinds() {
                 </div>
               </div>
 
-              {/* Computed Pace Result Box with high-end card styling & colored shadow */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/20 dark:border-amber-500/30 space-y-2 shadow-lg shadow-amber-500/10 transition-all duration-300">
+              {/* Computed Pace Result Box */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#ff0018]/10 dark:bg-[#ff0018]/15 border border-[#ff0018]/20 dark:border-[#ff0018]/30 space-y-2 shadow-lg shadow-[#ff0018]/10 transition-all duration-300">
                 <div className="flex items-center gap-2 text-xs font-bold text-amber-800 dark:text-amber-300">
-                  <HiOutlineClock className="w-4 h-4 text-[#d97706] dark:text-[#f59e0b]" />
+                  <HiOutlineClock className="w-4 h-4 text-[#ff5b49] dark:text-[#ff0018]" />
                   <span>Estimated Sanctuary Time:</span>
                 </div>
                 <div className="text-xl sm:text-2xl font-black text-neutral-900 dark:text-white tracking-tight">
@@ -467,7 +466,7 @@ export default function SanctuaryOfMinds() {
                 ✦ An Open Invitation
               </span>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
-                Whether You Craft Algorithms or Devour Chapters, You Belong Here
+                Whether You {" "} <span className="text-[#ff0018] dark:text-[#ff5b49]"> Craft Algorithms </span> {" "} or Devour Chapters, You Belong Here
               </h3>
               <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
                 Step beyond the digital noise. Borrow a companion for tonight, or
@@ -479,7 +478,7 @@ export default function SanctuaryOfMinds() {
             <div className="flex flex-col sm:flex-row items-center gap-3.5 shrink-0 w-full lg:w-auto justify-center">
               <Link
                 href="/books"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-bold text-white bg-linear-to-r from-amber-500 via-[#ff5b49] to-[#ff0018] rounded-2xl shadow-xl shadow-[#ff5b49]/30 hover:shadow-2xl hover:shadow-[#ff5b49]/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-[#ff5b49] to-[#ff0018] rounded-2xl shadow-lg shadow-[#ff5b49]/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <span>Peruse Grand Catalog</span>
                 <HiOutlineArrowRight className="w-4 h-4" />
@@ -487,7 +486,7 @@ export default function SanctuaryOfMinds() {
 
               <Link
                 href="/add-book"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-neutral-200 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/15 backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-neutral-200 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/15 backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
               >
                 Bestow a Volume
               </Link>

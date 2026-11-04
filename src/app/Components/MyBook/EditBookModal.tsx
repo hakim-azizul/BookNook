@@ -35,7 +35,7 @@ export default function EditBookModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-[#18181b] rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 dark:border-neutral-800 space-y-6 my-8 animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-white dark:bg-[#0f0007] rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 dark:border-neutral-800 space-y-6 my-8 animate-in fade-in zoom-in-95 duration-200">
         <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-4">
           <div>
             <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
@@ -112,15 +112,15 @@ export default function EditBookModal({
                   <Select.Popover>
                     <ListBox>
                       <ListBox.Item id="fiction" textValue="Fiction">
-                        Fiction &amp; Literature
+                        Fiction / Literature
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="non-fiction" textValue="Non-Fiction">
-                        Non-Fiction &amp; Essays
+                        Non-Fiction
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="philosophy" textValue="Philosophy">
-                        Philosophy &amp; Thought
+                        Philosophy / Thought
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="science" textValue="Science & Tech">
@@ -128,19 +128,19 @@ export default function EditBookModal({
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="history" textValue="History">
-                        History &amp; Chronicle
+                        History / Chronicle
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="kids" textValue="Kids">
-                        Children &amp; Young Readers
+                        Young Readers
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="religion" textValue="Religion">
-                        Theology &amp; Spirituality
+                        Spirituality
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                       <ListBox.Item id="others" textValue="Others">
-                        General &amp; Rare Works
+                        Rare Works
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
                     </ListBox>
