@@ -75,7 +75,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center rounded-3xl bg-surface p-4 sm:p-6 min-h-[80vh] transition-colors duration-200">
-      <Surface className="w-full max-w-xl p-6 sm:p-12 rounded-3xl bg-[#f4f6f0] dark:bg-[#18181b] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
+      <Surface className="w-full max-w-xl p-6 sm:p-12 rounded-3xl bg-[#f4f6f0] dark:bg-[#0f0404] border border-neutral-200/80 dark:border-neutral-800 shadow-xl">
         <Form onSubmit={onSubmit}>
           <Fieldset className="w-full">
             <Fieldset.Legend className="text-rose-500 text-2xl font-bold">
