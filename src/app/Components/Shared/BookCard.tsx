@@ -18,8 +18,8 @@ const BookCard = ({ book }: BookCardProps) => {
         <Image
           src={book.image || fallbackImage}
           alt={book.title || "Book Cover"}
-          width={300}
-          height={400}
+          fill
+          sizes="(max-width: 768px) 100vw, 300px"
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
         />
         {/* Dark Gradient Overlay */}

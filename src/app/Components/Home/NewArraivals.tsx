@@ -70,24 +70,15 @@ const NewArraivals = async () => {
 
         {/* Books Grid */}
         {Array.isArray(newBooks) && newBooks.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-            {newBooks.map((newBook: iBook, index: number) => {
-              let visibilityClass = "";
-              if (index >= 6 && index < 9) {
-                visibilityClass = "hidden sm:block";
-              } else if (index >= 9) {
-                visibilityClass = "hidden lg:block";
-              }
-
-              return (
-                <div
-                  key={newBook._id || index}
-                  className={`w-full flex justify-center ${visibilityClass}`}
-                >
-                  <BookCard book={newBook} />
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+            {newBooks.map((newBook: iBook, index: number) => (
+              <div
+                key={newBook._id || index}
+                className="w-full flex justify-center"
+              >
+                <BookCard book={newBook} />
+              </div>
+            ))}
           </div>
         ) : (
           <div className="text-center py-16 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-sm">
